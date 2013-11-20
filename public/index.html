@@ -18,10 +18,10 @@
       window.fbAsyncInit = function() {
         // init the FB JS SDK
         FB.init({
-          appId      : '593950217332942',                        // App ID from the app dashboard
-          channelUrl : '//test-1dece.herokuapp.com/channel.html', // Channel file for x-domain comms
-          status     : true,                                 // Check Facebook Login status
-          xfbml      : true                                  // Look for social plugins on the page
+          appId: '593950217332942',
+          channelUrl: '//test-1dece.herokuapp.com/channel.html',
+          status: true,
+          xfbml: true
         });
 
         // Additional initialization code such as adding Event Listeners goes here
@@ -29,10 +29,9 @@
           App.handleSession(response);
         });
 
-        // FB.getLoginStatus(function(response) {
-        //   $this.handleSession(response);
-        // });
-
+        FB.getLoginStatus(function(response) {
+          $this.handleSession(response);
+        });
       };
 
       // Load the SDK asynchronously
