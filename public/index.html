@@ -1,22 +1,71 @@
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/national.css">
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif:700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,400' rel='stylesheet' type='text/css'>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+</head>
 
-    <title>1dece.ro</title>
+<script>
+$(window).ready(function(){
 
-    <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+    var w = $(window).width();
+    $(".hora-container-mask").css("width", w);
 
-    <!-- it's ussually goes on body bottom but we need it before FB.init -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="/javascripts/application.js" type="text/javascript"></script>
-  </head>
-  <body>
+    // var width = 0;
+    $('.hora-container img').each(function() {
+        width += $(this).outerWidth( true );
+    });
+
+    $(".hora-container").css('width', width);
+
+
+  $(".left, .close-leftSidebar").unbind().bind("click", function(){
+    if (!$(".slideLeft").length) {
+      $("#main").addClass("slideLeft");
+      $("#left-sidebar").removeClass("initialLeftSidebar").addClass("moveLeftSidebar");
+    } else {
+      $("#main").removeClass("slideLeft");
+      $("#left-sidebar").removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
+    }
+  });
+
+  $(".top, .close-topSidebar").unbind().bind("click", function(){
+
+    if (!$(".slideTop").length) {
+      $("#main").addClass("slideTop");
+      $("#top-sidebar").removeClass("initialTopSidebar").addClass("moveTopSidebar");
+    } else {
+      $("#main").removeClass("slideTop");
+      $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
+    }
+
+  });
+
+  // $(".hora-container img").mouseenter( function(){
+  //   $(this).parent().append("<div class='color-overlay'><span>Bogdan Ferariu<span></div>");
+  // }).mouseleave(function(){
+  //   $(this).parent().find(".color-overlay").remove();
+  // });
+
+
+
+})
+</script>
+
+<body>
     <div id="fb-root"></div>
     <script>
       window.fbAsyncInit = function() {
         // init the FB JS SDK
         FB.init({
-          appId      : '216444205197813',                        // App ID from the app dashboard
+          appId      : '593950217332942',                        // App ID from the app dashboard
           channelUrl : '//test-1dece.herokuapp.com/channel.html', // Channel file for x-domain comms
           status     : true,                                 // Check Facebook Login status
           xfbml      : true                                  // Look for social plugins on the page
@@ -43,8 +92,74 @@
       }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <div id="status">
-      <!-- it should be empty, we gonna change content dynamic via javascript -->
+  <div id="left-sidebar" class="initialLeftSidebar">
+    <button class="close-leftSidebar">x</button>
+    <h3>About us</h3>
+    <p>Jean and Bogdan teamed up in Denmark where they graduated in eConcept development and now are forming a young creative digital team connected by their common interest in creative technology.</p>
+    <p>You might have heard about them through their independent works or through their common ones, for example the 1dece.ro initiative focused on clearing up the good name of Bucharest and getting the foreigners to once and for all understand the difference between BUCHAREST and BUDAPEST.</p>
+  </div>
+
+  <div id="top-sidebar" class="initialTopSidebar">
+    <button class="close-topSidebar">x</button>
+    <h3>About us</h3>
+    <p>Jean and Bogdan teamed up in Denmark where they graduated in eConcept development and now are forming a young creative digital team connected by their common interest in creative technology.</p>
+    <p>You might have heard about them through their independent works or through their common ones, for example the 1dece.ro initiative focused on clearing up the good name of Bucharest and getting the foreigners to once and for all understand the difference between BUCHAREST and BUDAPEST.</p>
+  </div>
+
+<div id="main">
+  <div id="top-part">
+
+    <div id="flagholder">
+        <div class="blue"></div>
+        <div class="yellow"></div>
+        <div class="red"></div>
+    </div><!-- header -->
+
+    <h2>1 december</h2>
+    <h1>National Day of Romania</h1>
+
+    <div class="hora-container-mask">
+      <div class="hora-container">
+        <!-- <div class="char-overlay"><img src="char.png" /><div class='color-overlay'><span>Bogdan Ferariu<span></div></div> -->
+        <img src="char.png" />
+        <img src="char-2.png" />
+        <img src="char.png" />
+        <img src="char-2.png" />
+        <img src="char.png" />
+        <img src="char.png" />
+        <img src="char.png" />
+        <img src="char-2.png" />
+        <img src="char.png" />
+        <img src="char.png" />
+        <img src="char-2.png" />
+        <img src="char.png" />
+        <img src="char.png" />
+        <img src="char-2.png" />
+        <img src="char.png" />
+        <img src="char.png" />
+        <img src="char.png" />
+      </div>
     </div>
-  </body>
+
+    <div class="action-buttons" id="status">
+      <!-- it should be empty, we gonna change content dynamic via javascript -->
+    </div><!-- action buttons -->
+
+    <div class="sidebar-buttons">
+      <button class="top"></button>
+      <button class="left"></button>
+    </div>
+
+
+  </div><!-- top part -->
+
+  <div class="dance-description">
+    <h3>CREATING THE FIRST DIGITAL HORA</h3>
+    <span class="title"><strong>Hora</strong> (dance)</span>
+    <p>Hora is a traditional Romanian folk dance where the dancers hold each other's hands and the circle spins, usually counterclockwise, as each participant follows a sequence of three steps forward and one step back. The dance is usually accompanied by musical instruments such as the cymbalum, accordion, violin, viola, double bass, saxophone, trumpet or the pan pipes. (copy bun ne tre pe aici, despre community involvment in hora).</p>
+  </div>
+</div>
+
+
+</body>
 </html>

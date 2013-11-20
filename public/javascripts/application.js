@@ -33,7 +33,7 @@ var App = {
 
   showLoginButton: function(){
     var $this = this;
-    $('#status').empty().append('<button id="connect">Connect with facebook!</button>');
+    $('#status').empty().append('<a id="connect" href="#" class="join-hora red">Join Hora</a><span class="button-spacer yellow">or</span><a id="dance" href="#" class="start-hora blue">Start Hora</a>');
     $('#connect').unbind().bind('click', function(e){
       e.preventDefault();
       $this.login();
@@ -43,7 +43,7 @@ var App = {
 
   showDanceButton: function(){
     var $this = this;
-    $('#status').empty().append('<button id="dance">Dance!</button>');
+    $('#status').empty().append('<a id="connect" href="#" class="join-hora red">Join Hora</a><span class="button-spacer yellow">or</span><a id="dance" href="#" class="start-hora blue">Start Hora</a>');
     $('#dance').unbind().bind('click', function(e){
       e.preventDefault();
       $this.dance();

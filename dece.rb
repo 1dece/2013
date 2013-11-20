@@ -6,3 +6,7 @@ ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://local
 get '/' do
   redirect '/index.html'
 end
+
+post '/save' do
+
+end
