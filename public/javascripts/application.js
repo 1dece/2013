@@ -10,21 +10,61 @@ var App = {
       var uid = session.authResponse.userID;
       var accessToken = session.authResponse.accessToken;
       App.showDanceButton();
+      App.saveUserData();
+      App.showEditor();
     } else {
       App.showLoginButton();
     }
   },
 
+  showEditor: function(){
+    alert('Success');
+  },
+
+  saveData: function(data){
+    console.log(data);
+    // ajax, store user id
+    $.ajax({
+      url: '/save',
+      type: 'POST',
+      data: data,
+      error: function(){
+        alert('Cannot save data. Try again later.')
+      },
+      succes: function(){
+        this.showEditor();
+      },
+    })
+  },
+
+  saveUserData: function(){
+    var data = {};
+    FB.api('/me', function(user) {
+      data.id = user.id;
+      data.name = user.name;
+      data.gender = user.gender;
+      if(user.location) {
+        data.location = user.location.name;
+        FB.api(user.location.id, function(location) {
+          data.longitude = location.location.longitude;
+          data.latitude = location.location.latitude;
+          App.saveData(data);
+        })
+      } else {
+        // without location
+        App.saveData(data);
+      }
+    });
+  },
+
   login: function(){
     FB.login(function(response) {
       if (response.authResponse) {
-        FB.api('/me', function(response) {
-          // ajax, store user id
-        });
+          App.saveUserData();
       } else {
         // User cancelled login or did not fully authorize.
       }
-    });
+    }, {scope: 'user_location'});
   },
 
   dance: function(){
@@ -43,7 +83,7 @@ var App = {
 
   showDanceButton: function(){
     var $this = this;
-    $('#status').empty().append('<a id="connect" href="#" class="join-hora red">Join Hora</a><span class="button-spacer yellow">or</span><a id="dance" href="#" class="start-hora blue">Start Hora</a>');
+    $('#status').empty().append('<a id="dance" href="#" class="start-hora blue">Start Hora</a>');
     $('#dance').unbind().bind('click', function(e){
       e.preventDefault();
       $this.dance();

@@ -1,12 +1,12 @@
 require 'sinatra'
-require 'active_record'
 
-ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+load 'database'
+load 'models/user'
 
 get '/' do
   redirect '/index.html'
 end
 
 post '/save' do
-
+  puts params.inspect
 end
