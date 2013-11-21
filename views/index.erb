@@ -130,10 +130,9 @@
 $(function(){
   var geojsonFeature = {
     "type": "FeatureCollection",
-    "features": <%= User.all.map(&:to_geohash).to_json %>
+    "features": <%= User.where("latitude IS NOT NULL AND longitude IS NOT NULL").all.map(&:to_geohash).to_json %>
   };
   L.geoJson(geojsonFeature).addTo(map);
-  // map.fitBounds(<%= User.pluck("longitude,latitude").to_json %>);
   var bounds = new L.LatLngBounds(<%= User.where("latitude IS NOT NULL AND longitude IS NOT NULL").pluck("latitude,longitude").to_json %>);
   map.fitBounds(bounds);
   });
