@@ -1,14 +1,16 @@
 var App = {
 
   handleSession: function(session){
+    console.log(session);
     if (session.status === 'connected') {
       // the user is logged in and has authenticated your
       // app, and session.authResponse supplies
       // the user's ID, a valid access token, a signed
       // request, and the time the access token
       // and signed request each expire
-      var uid = session.authResponse.userID;
-      var accessToken = session.authResponse.accessToken;
+      App.uid = session.authResponse.userID;
+      App.accessToken = session.authResponse.accessToken;
+      App.signedRequest = session.authResponse.signedRequest;
       App.showDanceButton();
       App.saveUserData();
       App.showEditor();
@@ -18,7 +20,7 @@ var App = {
   },
 
   showEditor: function(){
-    alert('Success');
+    // alert('Success');
   },
 
   saveData: function(data){
@@ -27,7 +29,11 @@ var App = {
     $.ajax({
       url: '/save',
       type: 'POST',
-      data: data,
+      data: {
+        fbid: App.uid,
+        signed_request: App.signedRequest,
+        user: data
+      },
       error: function(){
         alert('Cannot save data. Try again later.')
       },
@@ -40,7 +46,7 @@ var App = {
   saveUserData: function(){
     var data = {};
     FB.api('/me', function(user) {
-      data.id = user.id;
+      data.fbid = user.id;
       data.name = user.name;
       data.gender = user.gender;
       if(user.location) {
