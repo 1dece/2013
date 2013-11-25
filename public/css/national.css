@@ -595,9 +595,9 @@ a.blue:hover   {background: #678e99;}
 .editor.female[data-character="2"] { background-position: -84px 45px; }
 .editor.female[data-character="3"] { background-position: -184px 45px; }
 
-.current-participant.female[data-character="1"] { background-position: 0 0; }
-.current-participant.female[data-character="2"] { background-position: -103px 0; }
-.current-participant.female[data-character="3"] { background-position: -206px 0; }
+.current-participant.female[data-character="1"] { background-position: 0 8px; }
+.current-participant.female[data-character="2"] { background-position: -103px 8px; }
+.current-participant.female[data-character="3"] { background-position: -206px 8px; }
 
 .newParticipant {
     margin: 0 20px;
