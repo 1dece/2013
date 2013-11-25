@@ -69,8 +69,22 @@ h3 {
 .yellow {background: #e1c65c;}
 .blue   {background: #a2c5cf;}
 
+.active-gender.red,
 a.red:hover    {background: #b74848;}
+
+.active-gender.blue,
 a.blue:hover   {background: #678e99;}
+
+.link {
+    color: #ed6e6e;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #b74848;;
+}
+
+
 
 /****************** */
 /*** 2. Top part ***/
@@ -491,14 +505,14 @@ a.blue:hover   {background: #678e99;}
 }
 
 .dance-description {
-    width: 440px;
+    width: 580px;
     display: block;
     margin: 0 auto;
     text-align: center;
 }
 
 .dance-description h3 {
-    text-align: left;
+    text-align: center;
 }
 
 .dance-description .title {
@@ -514,8 +528,8 @@ a.blue:hover   {background: #678e99;}
     font-weight: 400;
     font-size: 13px;
     color: #4c4c4c;
-    margin: 6px 0 0 0;
-    line-height: 18px;
+    margin: 12px 0 0 0;
+    line-height: 21px;
 }
 
 /********************* */
@@ -528,6 +542,13 @@ a.blue:hover   {background: #678e99;}
     height: 115px;
     width: 54px;
     overflow: hidden;
+
+    transition: all 500ms;
+    /*browser specific versions*/
+    -moz-transition: all 500ms;
+    -ms-transition: all 500ms;
+    -webkit-transition: all 500ms;
+    -o-transition: all 500ms;
 }
 
 .participant p {
@@ -558,26 +579,83 @@ a.blue:hover   {background: #678e99;}
     top: -16px;
 }
 
-.male-1 { background: url("../img/char-1.png") 0 0 no-repeat transparent; }
-.male-2 { background: url("../img/char-2.png") 0 0 no-repeat transparent; }
-.male-3 { background: url("../img/char-3.png") 0 0 no-repeat transparent; }
-.male-4 { background: url("../img/char-4.png") 0 0 no-repeat transparent; }
-.male-5 { background: url("../img/char-5.png") 0 0 no-repeat transparent; }
-.male-6 { background: url("../img/char-6.png") 0 0 no-repeat transparent; }
-.male-7 { background: url("../img/char-7.png") 0 0 no-repeat transparent; }
-.male-8 { background: url("../img/char-8.png") 0 0 no-repeat transparent; }
-.male-9 { background: url("../img/char-9.png") 0 0 no-repeat transparent; }
+.male { background: url("../img/spritehora.png") 20px -145px no-repeat transparent; }
+
+.editor.male[data-character="1"] { background-position: 20px -145px; }
+.editor.male[data-character="2"] { background-position: -84px -145px; }
+.editor.male[data-character="3"] { background-position: -184px -145px; }
+
+.current-participant.male[data-character="1"] { background-position: 0 -185px; }
+.current-participant.male[data-character="2"] { background-position: -103px -185px; }
+.current-participant.male[data-character="3"] { background-position: -206px -185px; }
+
+.female { background: url("../img/spritehora.png") 20px 45px no-repeat transparent; }
+
+.editor.female[data-character="1"] { background-position: 20px 45px; }
+.editor.female[data-character="2"] { background-position: -84px 45px; }
+.editor.female[data-character="3"] { background-position: -184px 45px; }
+
+.current-participant.female[data-character="1"] { background-position: 0 0; }
+.current-participant.female[data-character="2"] { background-position: -103px 0; }
+.current-participant.female[data-character="3"] { background-position: -206px 0; }
 
 .newParticipant {
     margin: 0 20px;
-
-    transition: all 500ms;
-    /*browser specific versions*/
-    -moz-transition: all 500ms;
-    -ms-transition: all 500ms;
-    -webkit-transition: all 500ms;
-    -o-transition: all 500ms;
 }
+
+.editor {
+    position: relative;
+    padding: 40px 20px;
+    border: 1px solid #ececec;
+    background-color: #f8f8f8 !important;
+}
+
+/* editor */
+.editor:hover p {
+    display: none;
+}
+
+.gender-select {
+    color: #FFFFFF;
+    display: inline-block;
+    height: 20px;
+    width: 24px;
+    padding: 4px 0 0 0;
+    text-decoration: none;
+    text-align: center;
+}
+
+.gender-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.save-participant {
+    font-family: 'Open Sans', serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #FFF;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    padding: 4px 0;
+}
+
+.arrows {
+    position: absolute;
+    top: 45%;
+    color: #000;
+    text-decoration: none;
+}
+
+.next-char { right: 6px; }
+.prev-char { left: 6px; }
 
 .danceDown {
 /*    top: 5px;
@@ -701,4 +779,3 @@ a.blue:hover   {background: #678e99;}
     }
 }
 }
-

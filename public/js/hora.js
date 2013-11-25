@@ -1,9 +1,9 @@
 $(window).ready(function(){
 
-var w = $(window).width();
+  var w = $(window).width();
   $(".hora-container-mask").css("width", w);
 
-  var chars = $(".hora-container").find("span").length,
+  var chars = $(".hora-container").find("div").length,
       containerW = chars * 54;
   $(".hora-container").css("width", containerW);
 
@@ -79,6 +79,88 @@ var w = $(window).width();
 
   });
 
+  function selGender() {
+    $(".gender-buttons").find("a").unbind().bind("click", function(e){
+      e.preventDefault();
+
+      if ((".active-gender").length) {
+        $(".gender-select").removeClass("active-gender");
+        $(this).addClass("active-gender");
+      } else {
+        $(this).addClass("active-gender");
+      }
+
+      if ($(".active-gender.ion-male").length){
+        $(this).parent().parent().removeClass("female").addClass("male");
+      } else {
+        $(this).parent().parent().removeClass("male").addClass("female");
+      }
+
+    });
+  }
+  selGender();
+
+  function selCharacter() {
+    var charNumberNext = 1;
+    $(".next-char").unbind().bind("click", function(e){
+      e.preventDefault();
+        if (charNumberNext == 3) {
+          charNumberNext = 1;
+          $(this).parent().attr("data-character", charNumberNext);
+        } else {
+          charNumberNext++
+          $(this).parent().attr("data-character", charNumberNext);
+        }
+    });
+
+    $(".prev-char").unbind().bind("click", function(e){
+      e.preventDefault();
+      var currentPos = $(this).parent().attr("data-character");
+      
+        if (currentPos == 1) {
+          currentPos = 3;
+          $(this).parent().attr("data-character", currentPos);
+        } else {
+          currentPos--
+          $(this).parent().attr("data-character", currentPos);
+        }
+    });
+  }
+  selCharacter();
+
+  function applyCharacter() {
+    $(".save-participant").unbind().bind("click", function(e){
+      e.preventDefault();
+      $(this).fadeOut(200);
+      $(this).prevAll(".arrows, .gender-buttons").fadeOut(200);
+      $(this).parent().removeClass("editor").addClass("current-participant").addClass("newParticipant");
+
+          setTimeout(function(){
+      $(".participant").removeClass("newParticipant");
+    },800);
+    });
+
+  }
+
+  applyCharacter();
 
 
 })
+
+
+
+
+//
+
+// var sliderCount = 0;
+
+//   jQuery('#add_slider_image').click(function() {
+
+//     if (sliderCount == 5) {
+//       alert('Limit reached');
+//     } else {
+//        sliderCount++;
+//        jQuery('.form-table').append('<tr><td><input type="text" value="" name="slider[]" /><input type="button" name="sliderbut" value="Upload" rel="'+ sliderCount +'" /></td><tr>');
+//     }
+
+//   });
