@@ -52,32 +52,42 @@ $(window).ready(function(){
           $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceDown");
         },2000)
       });
-
-
   });
+  
 
-  $(".left, .close-leftSidebar").unbind().bind("click", function(){
-    $('a, button').bind("click", function() { return false; });
-    if (!$(".slideLeft").length) {
-      $("#main").addClass("slideLeft");
-      $("#left-sidebar").removeClass("initialLeftSidebar").addClass("moveLeftSidebar");
-    } else {
-      $("#main").removeClass("slideLeft");
-      $("#left-sidebar").removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
-    }
-  });
+  function slideLeft() {
+    $(".left, .close-leftSidebar").unbind().bind("click", function(){
+      if ($(".slideTop").length) { 
+        $("#main").removeClass("slideTop");
+        $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
+      }
+      if (!$(".slideLeft").length) {
+        $("#main").addClass("slideLeft");
+        $("#left-sidebar").removeClass("initialLeftSidebar").addClass("moveLeftSidebar");
+      } else {
+        $("#main").removeClass("slideLeft");
+        $("#left-sidebar").removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
+      }
+    });
+  }
+  slideLeft(); 
 
-  $(".top, .close-topSidebar").unbind().bind("click", function(){
-
-    if (!$(".slideTop").length) {
-      $("#main").addClass("slideTop");
-      $("#top-sidebar").removeClass("initialTopSidebar").addClass("moveTopSidebar");
-    } else {
-      $("#main").removeClass("slideTop");
-      $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
-    }
-
-  });
+  function slideTop() { 
+    $(".top, .close-topSidebar").unbind().bind("click", function(){
+      if ($(".slideLeft").length) {
+        $("#main").removeClass("slideLeft");
+        $("#left-sidebar").removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
+      }
+      if (!$(".slideTop").length) {
+        $("#main").addClass("slideTop");
+        $("#top-sidebar").removeClass("initialTopSidebar").addClass("moveTopSidebar");
+      } else {
+        $("#main").removeClass("slideTop");
+        $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
+      }
+    });
+  }
+  slideTop();
 
   function selGender() {
     $(".gender-buttons").find("a").unbind().bind("click", function(e){

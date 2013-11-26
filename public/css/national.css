@@ -25,29 +25,29 @@ button:focus {
 }
 
 h1,h2 {
-    font-family: 'Droid Serif', serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-style: italic;
     text-align: center;
     margin: 0;
+    text-transform: uppercase;
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 24px;
     color: #ed6e6e;
-    margin: 6px 0;
+    margin: 0;
 }
 
 h2 {
-    font-size: 22px;
-    color: #425b71;
+    font-size: 14px;
+    color: #678e99;
 }
 
 h3 {
     font-family: 'Open Sans', serif;
     font-weight: 700;
-    font-size: 24px;
-    color: #425b71;
+    font-size: 22px;
+    color: #678e99;
     font-style: normal;
     text-align: center;
 }
@@ -604,6 +604,7 @@ a.blue:hover   {background: #678e99;}
 }
 
 .editor {
+    display: none !important;
     position: relative;
     padding: 40px 20px;
     border: 1px solid #ececec;
@@ -656,6 +657,32 @@ a.blue:hover   {background: #678e99;}
 
 .next-char { right: 6px; }
 .prev-char { left: 6px; }
+
+#footer {
+    height: 30px;
+    width: 100%;
+    display: block;
+    background: #F8F8F8; 
+}
+
+.footer-wrapper {
+    width: 640px;
+    display: block;
+    margin: 0 auto;
+}
+
+.hello1dece {
+    font-family: 'Open Sans', serif;
+    font-weight: 300;
+    font-size: 13px;
+    display: block;
+}
+
+.cc {
+    font-family: 'Open Sans', serif;
+    font-weight: 300;
+    font-size: 10px;
+}
 
 .danceDown {
 /*    top: 5px;
@@ -779,3 +806,4 @@ a.blue:hover   {background: #678e99;}
     }
 }
 }
+
