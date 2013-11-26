@@ -1,7 +1,6 @@
 var App = {
 
   handleSession: function(session){
-    console.log(session);
     if (session.status === 'connected') {
       // the user is logged in and has authenticated your
       // app, and session.authResponse supplies
@@ -13,19 +12,43 @@ var App = {
       App.signedRequest = session.authResponse.signedRequest;
       App.showDanceButton();
       App.saveUserData();
-      App.showEditor();
     } else {
       App.showLoginButton();
     }
   },
 
   showEditor: function(){
-    // alert('Success');
+    FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        // remove current user from list
+        var hora = $('.hora-container'),
+            editor = $('.editor'),
+            place_after = Math.floor($(window).width() / 2 / editor.width());
+        // debugger;
+
+        $('.user-'+response.authResponse.userID).remove();
+        // calculate editor position
+        if (hora.find('.participant').length <= place_after){
+          hora.append(editor.clone().css({visibility: 'visible'}));
+        }else{
+          hora.find('.participant:nth-child('+place_after+'n):first').after(editor.clone());
+        }
+
+
+        Hora.selGender();
+        Hora.selCharacter();
+
+        // TODO: jScrollPane
+        // var pane = $('.hora-container-mask'),
+        //     api = pane.data('jsp');
+        //     api.reinitialise();
+
+      }
+    });
   },
 
   saveData: function(data){
     console.log(data);
-    // ajax, store user id
     $.ajax({
       url: '/save',
       type: 'POST',
@@ -37,8 +60,8 @@ var App = {
       error: function(){
         alert('Cannot save data. Try again later.')
       },
-      succes: function(){
-        this.showEditor();
+      success: function(){
+        App.showEditor();
       },
     })
   },
@@ -84,7 +107,6 @@ var App = {
     $('#connect').unbind().bind('click', function(e){
       e.preventDefault();
       $this.login();
-      return false;
     })
   },
 
@@ -92,13 +114,25 @@ var App = {
     var $this = this;
     $('#status').empty().append('<a id="dance" href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>');
 
-    bindStartHora();
+    Hora.bindStartHora();
     $('#dance').unbind().bind('click', function(e){
       e.preventDefault();
-      startHora();
+      Hora.startHora();
       return false;
     })
-  }
+  },
+
+  // editor: {
+  //   bindGenderButtons: function(){
+  //     $('.gender-buttons a').on('click', function(e){
+  //       e.preventDefault();
+  //       $('.gender-buttons a').removeClass('active');
+  //       $(this).addClass('active');
+  //     });
+  //   }
+  // }
 
 };
-
+// $(function(){
+//   App.editor.bindGenderButtons();
+// });

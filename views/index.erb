@@ -97,10 +97,10 @@
     <h1>National Day of Romania</h1>
 
     <div class="hora-container-mask">
-      <div class="hora-container">
+      <div class="hora-container" style="width: <%= 500*User.count * 54 %>px">
         <% 500.times do %>
           <% User.all.each do |user| %>
-            <div class="current-participant participant <%= user.gender %>" data-character="<%= user.character || [1,2,3].shuffle.first %>"><p><%= user.name %></p></div>
+            <div class="user-<%= user.fbid %> current-participant participant <%= user.gender %>" data-character="<%= user.character || [1,2,3].shuffle.first %>"><p><%= user.name %></p></div>
           <% end %>
         <% end %>
       </div>

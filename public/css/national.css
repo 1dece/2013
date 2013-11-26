@@ -3,7 +3,7 @@
  * Author: authors@1dece.ro
  *
  * Contents
- * 
+ *
  * 1   General
  * 1.1 Colors
  * 2.  Top part
@@ -98,15 +98,15 @@ a.blue:hover   {background: #678e99;}
     border-bottom: 1px solid #e5e5e5;
 }
 
-#flagholder { 
-    margin: 0 0 24px 0; 
+#flagholder {
+    margin: 0 0 24px 0;
 }
 
 #flagholder div {
     height: 5px;
     display: block;
     width: 100%;
-    
+
     -moz-animation-name: flagColors;
     -moz-animation-iteration-count: once;
     -moz-animation-timing-function: ease-in;
@@ -340,7 +340,7 @@ a.blue:hover   {background: #678e99;}
     line-height: 80px;
     text-align: center;
     color: #434c55;
-    padding: 20px 0 0 0; 
+    padding: 20px 0 0 0;
 }
 
 .stats-box .text {
@@ -414,7 +414,7 @@ a.blue:hover   {background: #678e99;}
     -ms-transform:translateY(0px) !important;
     -webkit-transform:translateY(0px) !important;
     -o-transform:translateY(0px) !important;
-    
+
     transition: all 1s;
     /*browser specific versions*/
     -moz-transition: all 1s;
@@ -473,7 +473,7 @@ a.blue:hover   {background: #678e99;}
 }
 
 .hora-container {
-    width: 10000px;
+    /* width: 10000px; */
     height: 100%;
     display: block;
 }
@@ -608,6 +608,8 @@ a.blue:hover   {background: #678e99;}
     padding: 40px 20px;
     border: 1px solid #ececec;
     background-color: #f8f8f8 !important;
+    display: block;
+    visibility: hidden;
 }
 
 /* editor */
