@@ -98,35 +98,11 @@
 
     <div class="hora-container-mask">
       <div class="hora-container">
-         <div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant female" data-character="3"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant female" data-character="2"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="3"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="2"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="2"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant female" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="3"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant female" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="2"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant female" data-character="3"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant female" data-character="3"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="2"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant female" data-character="3"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="2"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant female" data-character="3"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant female" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="3"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant female" data-character="2"><p>Bogdan Ferariu</p></div><!--
-      --><div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div>
-
+        <% 500.times do %>
+          <% User.all.each do |user| %>
+            <div class="current-participant participant <%= user.gender %>" data-character="<%= user.character || [1,2,3].shuffle.first %>"><p><%= user.name %></p></div>
+          <% end %>
+        <% end %>
       </div>
     </div>
 
