@@ -1,6 +1,4 @@
-function bindStartHora(){
-  $('.start-hora').click(function(e){
-    e.preventDefault();
+function startHora(){
     $('.start-hora').text("Pause hora").append('<i class="ion-ios7-pause"></i>').removeClass("start-hora").addClass("pause-hora");
     $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
 
@@ -8,6 +6,11 @@ function bindStartHora(){
       $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
       $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceDown");
     },2000)
+};
+function bindStartHora(){
+  $('.start-hora').click(function(e){
+    e.preventDefault();
+    startHora();
   });
 };
 

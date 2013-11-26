@@ -95,7 +95,7 @@ var App = {
     bindStartHora();
     $('#dance').unbind().bind('click', function(e){
       e.preventDefault();
-      $this.dance();
+      startHora();
       return false;
     })
   }
