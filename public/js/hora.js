@@ -1,4 +1,18 @@
+function bindStartHora(){
+  $('.start-hora').click(function(e){
+    e.preventDefault();
+    $('.start-hora').text("Pause hora").append('<i class="ion-ios7-pause"></i>').removeClass("start-hora").addClass("pause-hora");
+    $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
+
+    setTimeout(function(){
+      $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
+      $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceDown");
+    },2000)
+  });
+};
+
 $(window).ready(function(){
+
 
   var w = $(window).width();
   $(".hora-container-mask").css("width", w);
@@ -9,7 +23,7 @@ $(window).ready(function(){
 
   $(function() {
     var pane = $('.hora-container-mask');
-        
+
     pane.bind('jsp-scroll-x',function(event, scrollPositionX) {
       var elLeft = (parseInt($(".hora-container").css("width")) - parseInt($(".hora-container-mask").css("width")));
 
@@ -42,17 +56,7 @@ $(window).ready(function(){
       //   api.scrollToX(0, false);
       // });
 
-      $('.start-hora').click(function(e){
-        e.preventDefault();
-        $('.start-hora').text("Pause hora").append('<i class="ion-ios7-pause"></i>').removeClass("start-hora").addClass("pause-hora");
-        $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
-        
-        setTimeout(function(){
-          $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
-          $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceDown");
-        },2000)
-      });
-
+      bindStartHora();
 
   });
 
@@ -116,7 +120,7 @@ $(window).ready(function(){
     $(".prev-char").unbind().bind("click", function(e){
       e.preventDefault();
       var currentPos = $(this).parent().attr("data-character");
-      
+
         if (currentPos == 1) {
           currentPos = 3;
           $(this).parent().attr("data-character", currentPos);
