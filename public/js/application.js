@@ -103,7 +103,7 @@ var App = {
   showLoginButton: function(){
     var $this = this;
     $('#status').empty().append('<a id="connect" href="#" class="join-hora blue"><i class="ion-social-facebook"></i>Join Hora</a><span class="button-spacer yellow">or</span><a id="dance" href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>');
-    bindStartHora();
+    Hora.bindStartHora();
     $('#connect').unbind().bind('click', function(e){
       e.preventDefault();
       $this.login();
