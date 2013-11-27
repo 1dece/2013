@@ -13,11 +13,11 @@
   <link href="css/ionicons.css" rel="stylesheet" type="text/css" />
 
   <link rel="stylesheet" href="css/map.css">
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+  <link rel="stylesheet" href="css/leaflet.css" />
   <!--[if lte IE 8]>
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+    <link rel="stylesheet" href="css/leaflet.ie.css" />
   <![endif]-->
-  <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+  <script src="js/leaflet.js"></script>
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
   <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
@@ -97,12 +97,13 @@
     <h1>National Day of Romania</h1>
 
     <div class="hora-container-mask">
-      <div class="hora-container" style="width: <%= 500*User.count * 54 %>px">
-        <% 500.times do %>
+      <div class="hora-container" style="width: <%= 501*User.count * 54  %>px">
+        <% 500.times do |i| %>
+            <div class="user-<%= i %> current-participant participant <%= %w(female male).shuffle.first %>" data-character="<%= [1,2,3].shuffle.first %>"><p><%= i %></p></div>
+        <% end %>
           <% User.all.each do |user| %>
             <div class="user-<%= user.fbid %> current-participant participant <%= user.gender %>" data-character="<%= user.character || [1,2,3].shuffle.first %>"><p><%= user.name %></p></div>
           <% end %>
-        <% end %>
       </div>
     </div>
 
@@ -132,7 +133,7 @@
 
 <div class="editor participant male" data-character="1">
   <div class="gender-buttons">
-    <a href="#" class="gender-select ion-female red"></a><a href="#" class="gender-select ion-male blue"></a>
+    <a href="#" class="gender-select ion-female red" data-gender="female"></a><a href="#" class="gender-select ion-male blue" data-gender="male"></a>
   </div>
   <!-- gender buttons -->
     <a href="#" class="arrows prev-char ion-chevron-left">

@@ -1,5 +1,5 @@
 $(function(){
-  map = L.map('map').setView([44.23, 26.1], 4);
+  map = L.map('map').setView([44.23, 26.1], 3);
 
   L.tileLayer('http://{s}.tile.cloudmade.com/{key}/22677/256/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2012 CloudMade',

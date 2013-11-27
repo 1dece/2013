@@ -20,38 +20,69 @@ var App = {
   showEditor: function(){
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
-        // remove current user from list
-        var hora = $('.hora-container'),
-            editor = $('.editor'),
-            place_after = Math.floor($(window).width() / 2 / editor.width());
-        // debugger;
+          // remove current user from list
+          var user = App.current_user;
+          if(user){
+          var hora = $('.hora-container'),
+              editor = $('.editor'),
+              place_after = Math.floor($(window).width() / 2 / editor.width());
 
-        $('.user-'+response.authResponse.userID).remove();
-        // calculate editor position
-        if (hora.find('.participant').length <= place_after){
-          hora.append(editor.clone().css({visibility: 'visible'}));
-        }else{
-          hora.find('.participant:nth-child('+place_after+'n):first').after(editor.clone());
+          $('.user-'+response.authResponse.userID).slideUp().remove();
+          // calculate editor position
+          var new_editor = editor.clone(),
+              character = user && user.character ? user.character : 1;
+
+          new_editor.find('.active-gender').removeClass('active-gender');
+          new_editor.find('.gender-buttons').find('.ion-'+user.gender).addClass('active-gender');
+          new_editor.removeClass('male').removeClass('female').addClass(user.gender);
+          new_editor.attr('data-character', character);
+
+          hora.attr('style', 'width:'+hora.find('.participant').length * 54 + 300 + 'px');
+
+          if (hora.find('.participant').length <= place_after){
+            hora.append(new_editor);
+          }else{
+            hora.find('.participant:nth-child('+place_after+'n):first').after(new_editor);
+          }
+          new_editor.css({visibility: 'visible'})
+
+          Hora.selGender();
+          Hora.selCharacter();
+          App.applyCharacter();
+
         }
-
-
-        Hora.selGender();
-        Hora.selCharacter();
-
-        // TODO: jScrollPane
-        // var pane = $('.hora-container-mask'),
-        //     api = pane.data('jsp');
-        //     api.reinitialise();
-
       }
     });
   },
 
-  saveData: function(data){
-    console.log(data);
+  applyCharacter: function() {
+    $(".save-participant").unbind().bind("click", function(e){
+      e.preventDefault();
+      var parent = $(this).parent();
+      App.current_user.gender = parent.find('.active-gender').attr('data-gender');
+      App.current_user.character = parent.attr('data-character');
+
+
+      $(this).fadeOut(200);
+      $(this).prevAll(".arrows, .gender-buttons").fadeOut(200);
+      $(this).parent().removeClass("editor").addClass("current-participant").addClass("newParticipant");
+
+
+      App.saveCharacter(App.current_user, function(){
+        setTimeout(function(){
+          $(".participant").removeClass("newParticipant");
+        },800);
+      });
+
+    });
+
+  },
+
+  saveCharacter: function(data, callback){
     $.ajax({
-      url: '/save',
+      url: '/character',
       type: 'POST',
+      dataType: 'json',
       data: {
         fbid: App.uid,
         signed_request: App.signedRequest,
@@ -60,7 +91,29 @@ var App = {
       error: function(){
         alert('Cannot save data. Try again later.')
       },
-      success: function(){
+      success: function(user){
+        if(typeof callback == 'function'){
+          callback();
+        }
+      },
+    })
+  },
+
+  saveData: function(data){
+    $.ajax({
+      url: '/save',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        fbid: App.uid,
+        signed_request: App.signedRequest,
+        user: data
+      },
+      error: function(){
+        alert('Cannot save data. Try again later.')
+      },
+      success: function(user){
+        App.current_user = user;
         App.showEditor();
       },
     })
@@ -70,7 +123,7 @@ var App = {
     var data = {};
     FB.api('/me', function(user) {
       data.fbid = user.id;
-      data.name = user.name;
+      data.name = user.first_name;
       data.gender = user.gender;
       if(user.location) {
         data.location = user.location.name;
@@ -112,7 +165,7 @@ var App = {
 
   showDanceButton: function(){
     var $this = this;
-    $('#status').empty().append('<a id="dance" href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>');
+    $('#status').empty().append('<a href="#" class="joined-hora">You are in!</a><span class="button-spacer yellow">or</span><a id="dance" href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>');
 
     Hora.bindStartHora();
     $('#dance').unbind().bind('click', function(e){
@@ -134,5 +187,5 @@ var App = {
 
 };
 // $(function(){
-//   App.editor.bindGenderButtons();
+//   App.applyCharacter();
 // });

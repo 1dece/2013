@@ -24,38 +24,6 @@ var Hora = {
     });
   },
 
-  slideLeft: function () {
-    $(".left, .close-leftSidebar").unbind().bind("click", function(){
-      if ($(".slideTop").length) { 
-        $("#main").removeClass("slideTop");
-        $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
-      }
-      if (!$(".slideLeft").length) {
-        $("#main").addClass("slideLeft");
-        $("#left-sidebar").removeClass("initialLeftSidebar").addClass("moveLeftSidebar");
-      } else {
-        $("#main").removeClass("slideLeft");
-        $("#left-sidebar").removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
-      }
-    });
-  },
-
-  slideTop: function () { 
-    $(".top, .close-topSidebar").unbind().bind("click", function(){
-      if ($(".slideLeft").length) {
-        $("#main").removeClass("slideLeft");
-        $("#left-sidebar").removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
-      }
-      if (!$(".slideTop").length) {
-        $("#main").addClass("slideTop");
-        $("#top-sidebar").removeClass("initialTopSidebar").addClass("moveTopSidebar");
-      } else {
-        $("#main").removeClass("slideTop");
-        $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
-      }
-    });
-  },
-
   selGender: function() {
     $(".gender-buttons").find("a").unbind().bind("click", function(e){
       e.preventDefault();
@@ -103,27 +71,37 @@ var Hora = {
     });
   },
 
-  applyCharacter: function() {
-    $(".save-participant").unbind().bind("click", function(e){
-      e.preventDefault();
-      $(this).fadeOut(200);
-      $(this).prevAll(".arrows, .gender-buttons").fadeOut(200);
-      $(this).parent().removeClass("editor").addClass("current-participant").addClass("newParticipant");
-
-      setTimeout(function(){
-        $(".participant").removeClass("newParticipant");
-      },800);
+  leftSidebar: function(){
+    $(".left, .close-leftSidebar").unbind().bind("click", function(){
+      $('a, button').bind("click", function() { return false; });
+      if (!$(".slideLeft").length) {
+        $("#main").addClass("slideLeft");
+        $("#left-sidebar").removeClass("initialLeftSidebar").addClass("moveLeftSidebar");
+      } else {
+        $("#main").removeClass("slideLeft");
+        $("#left-sidebar").removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
+      }
     });
+  },
 
+  topSidebar: function(){
+    $(".top, .close-topSidebar").unbind().bind("click", function(){
+      if (!$(".slideTop").length) {
+        $("#main").addClass("slideTop");
+        $("#top-sidebar").removeClass("initialTopSidebar").addClass("moveTopSidebar");
+      } else {
+        $("#main").removeClass("slideTop");
+        $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
+      }
+    });
   }
 }
 
 $(function(){
   Hora.selGender();
   Hora.selCharacter();
-  Hora.applyCharacter();
-  Hora.slideTop();
-  Hora.slideLeft();
+  Hora.leftSidebar();
+  Hora.topSidebar();
   Hora.bindStartHora();
 });
 
