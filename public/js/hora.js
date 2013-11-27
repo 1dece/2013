@@ -1,61 +1,30 @@
-$(window).ready(function(){
+var Hora = {
+  startHora: function(){
+    $('.start-hora').text("Pause hora").append('<i class="ion-ios7-pause"></i>').removeClass("start-hora").addClass("pause-hora");
+    $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
+    $(".hora-container").find(".participant:even").addClass("danceUp");
 
-  var w = $(window).width();
-  $(".hora-container-mask").css("width", w);
+    setTimeout(function(){
+      // $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
+      $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
+      $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown2");
+      $(".hora-container").find(".participant:even").addClass("danceUp2");
+    },8000);
 
-  var chars = $(".hora-container").find("div").length,
-      containerW = chars * 54;
-  $(".hora-container").css("width", containerW);
+    setTimeout(function(){
+      $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
+      $(".hora-container").find(".participant").removeClass("danceDown2").removeClass("danceUp2");
+    },15000);
+  },
 
-  $(function() {
-    var pane = $('.hora-container-mask');
-        
-    pane.bind('jsp-scroll-x',function(event, scrollPositionX) {
-      var elLeft = (parseInt($(".hora-container").css("width")) - parseInt($(".hora-container-mask").css("width")));
-
-      if (elLeft == scrollPositionX) {
-        $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
-        $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceDown");
-      }
-
-      }).jScrollPane({
-        animateScroll: true,
-        animateDuration: 3000,
-        animateEase: "linear"
+  bindStartHora: function(){
+    $('.start-hora').click(function(e){
+      e.preventDefault();
+      Hora.startHora();
     });
+  },
 
-      var api = pane.data('jsp');
-
-      // $('.start-hora').click(function(e){
-      //   e.preventDefault();
-      //   //api.scrollToX(0, false);
-      //   $('.start-hora').text("Pause hora").append('<i class="ion-ios7-pause"></i>').removeClass("start-hora").addClass("pause-hora");
-      //   //api.scrollToX(parseInt(containerW), true);
-      //   $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
-      // });
-
-      // $('.pause-hora').click(function(e){
-      //   e.preventDefault();
-      //   alert(e.target.nodeName );
-      //   $('.jspPane, .jspDrag').stop();
-      //   $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
-      //   api.scrollToX(0, false);
-      // });
-
-      $('.start-hora').click(function(e){
-        e.preventDefault();
-        $('.start-hora').text("Pause hora").append('<i class="ion-ios7-pause"></i>').removeClass("start-hora").addClass("pause-hora");
-        $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
-        
-        setTimeout(function(){
-          $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
-          $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceDown");
-        },2000)
-      });
-  });
-  
-
-  function slideLeft() {
+  slideLeft: function () {
     $(".left, .close-leftSidebar").unbind().bind("click", function(){
       if ($(".slideTop").length) { 
         $("#main").removeClass("slideTop");
@@ -69,10 +38,9 @@ $(window).ready(function(){
         $("#left-sidebar").removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
       }
     });
-  }
-  slideLeft(); 
+  },
 
-  function slideTop() { 
+  slideTop: function () { 
     $(".top, .close-topSidebar").unbind().bind("click", function(){
       if ($(".slideLeft").length) {
         $("#main").removeClass("slideLeft");
@@ -86,10 +54,9 @@ $(window).ready(function(){
         $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
       }
     });
-  }
-  slideTop();
+  },
 
-  function selGender() {
+  selGender: function() {
     $(".gender-buttons").find("a").unbind().bind("click", function(e){
       e.preventDefault();
 
@@ -107,70 +74,104 @@ $(window).ready(function(){
       }
 
     });
-  }
-  selGender();
+  },
 
-  function selCharacter() {
+  selCharacter: function() {
     var charNumberNext = 1;
     $(".next-char").unbind().bind("click", function(e){
       e.preventDefault();
-        if (charNumberNext == 3) {
-          charNumberNext = 1;
+      if (charNumberNext == 3) {
+        charNumberNext = 1;
+        $(this).parent().attr("data-character", charNumberNext);
+      } else {
+        charNumberNext++
           $(this).parent().attr("data-character", charNumberNext);
-        } else {
-          charNumberNext++
-          $(this).parent().attr("data-character", charNumberNext);
-        }
+      }
     });
 
     $(".prev-char").unbind().bind("click", function(e){
       e.preventDefault();
       var currentPos = $(this).parent().attr("data-character");
-      
-        if (currentPos == 1) {
-          currentPos = 3;
-          $(this).parent().attr("data-character", currentPos);
-        } else {
-          currentPos--
-          $(this).parent().attr("data-character", currentPos);
-        }
-    });
-  }
-  selCharacter();
 
-  function applyCharacter() {
+      if (currentPos == 1) {
+        currentPos = 3;
+        $(this).parent().attr("data-character", currentPos);
+      } else {
+        currentPos--
+          $(this).parent().attr("data-character", currentPos);
+      }
+    });
+  },
+
+  applyCharacter: function() {
     $(".save-participant").unbind().bind("click", function(e){
       e.preventDefault();
       $(this).fadeOut(200);
       $(this).prevAll(".arrows, .gender-buttons").fadeOut(200);
       $(this).parent().removeClass("editor").addClass("current-participant").addClass("newParticipant");
 
-          setTimeout(function(){
-      $(".participant").removeClass("newParticipant");
-    },800);
+      setTimeout(function(){
+        $(".participant").removeClass("newParticipant");
+      },800);
     });
 
   }
+}
 
-  applyCharacter();
+$(function(){
+  Hora.selGender();
+  Hora.selCharacter();
+  Hora.applyCharacter();
+  Hora.slideTop();
+  Hora.slideLeft();
+  Hora.bindStartHora();
+});
 
 
-})
+$(window).ready(function(){
+
+  var w = $(window).width();
+  $(".hora-container-mask").css("width", w);
+
+  var chars = $(".hora-container").find("div").length,
+  containerW = chars * 54;
+  $(".hora-container").css("width", containerW);
+
+  $(function() {
+    var pane = $('.hora-container-mask');
+
+    pane.bind('jsp-scroll-x',function(event, scrollPositionX) {
+      var elLeft = (parseInt($(".hora-container").css("width")) - parseInt($(".hora-container-mask").css("width")));
+
+      if (elLeft == scrollPositionX) {
+        $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
+        $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceDown");
+      }
+
+    }).jScrollPane({
+      animateScroll: true,
+      animateDuration: 3000,
+      animateEase: "linear"
+    });
+
+    var api = pane.data('jsp');
+
+    // $('.start-hora').click(function(e){
+    //   e.preventDefault();
+    //   //api.scrollToX(0, false);
+    //   $('.start-hora').text("Pause hora").append('<i class="ion-ios7-pause"></i>').removeClass("start-hora").addClass("pause-hora");
+    //   //api.scrollToX(parseInt(containerW), true);
+    //   $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
+    // });
+
+    // $('.pause-hora').click(function(e){
+    //   e.preventDefault();
+    //   alert(e.target.nodeName );
+    //   $('.jspPane, .jspDrag').stop();
+    //   $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
+    //   api.scrollToX(0, false);
+    // });
 
 
-
-
-//
-
-// var sliderCount = 0;
-
-//   jQuery('#add_slider_image').click(function() {
-
-//     if (sliderCount == 5) {
-//       alert('Limit reached');
-//     } else {
-//        sliderCount++;
-//        jQuery('.form-table').append('<tr><td><input type="text" value="" name="slider[]" /><input type="button" name="sliderbut" value="Upload" rel="'+ sliderCount +'" /></td><tr>');
-//     }
-
-//   });
+  });
+});
