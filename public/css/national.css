@@ -605,13 +605,12 @@ a.blue:hover   {background: #678e99;}
 }
 
 .editor {
-    display: none !important;
     position: relative;
     padding: 40px 20px;
     border: 1px solid #ececec;
     background-color: #f8f8f8 !important;
     display: block;
-    visibility: hidden;
+    visibility: visible;
 }
 
 /* editor */
@@ -1130,4 +1129,12 @@ a.blue:hover   {background: #678e99;}
         -webkit-transform:translateY(0);
         -o-transform:translateY(0);
     }
+}
+
+
+.joined-hora {
+    background: #1db344;
+    position: relative;
+    display: inline-block;
+    padding: 18px 46px;
 }
