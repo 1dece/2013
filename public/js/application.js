@@ -142,7 +142,7 @@ var App = {
   login: function(){
     FB.login(function(response) {
       if (response.authResponse) {
-          App.saveUserData();
+          // App.saveUserData();
       } else {
         // User cancelled login or did not fully authorize.
       }
