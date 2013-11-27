@@ -159,7 +159,7 @@ var App = {
     Hora.bindStartHora();
     $('#connect').unbind().bind('click', function(e){
       e.preventDefault();
-      $this.login();
+      App.login();
     })
   },
 
@@ -186,6 +186,9 @@ var App = {
   // }
 
 };
-// $(function(){
-//   App.applyCharacter();
-// });
+$(function(){
+  $('#connect').unbind().bind('click', function(e){
+    e.preventDefault();
+    App.login();
+  })
+});
