@@ -11,7 +11,7 @@
   <meta property="fb:app_id" content="<%= ENV['FB_APP_ID'] || '593950217332942' %>" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="1 December | National Day of Romania" />
-  <meta property="og:image" content="http://hora.1dece.ro/favicon.png" />
+  <meta property="og:image" content="http://hora.1dece.ro/img/jointhehora.png" />
   <meta property="og:description" content="Join the largest digital hora to celebrate together the National Day of Romania." />
   <meta property="og:url" content="http://hora.1dece.ro" />
 
@@ -106,8 +106,9 @@
         <div class="red"></div>
     </div><!-- header -->
 
-    <h2>1 december</h2>
-    <h1>National Day of Romania</h1>
+    <div class="header">
+      <h2>1 december</h2> | <h1>National Day of Romania</h1>
+    </div>
 
     <div class="hora-container-mask">
       <div class="hora-container" style="width: <%= User.count * 54  %>px">
@@ -121,9 +122,11 @@
       <a id="connect" href="#" class="join-hora blue"><i class="ion-social-facebook"></i>Join Hora</a>
       <span class="button-spacer yellow">or</span>
       <a id="dance" href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>
+      <button class="startsong"></button>
+      <button class="stopsong"></button>
     </div><!-- action buttons -->
 
-    <div class="fb-like" data-href="http://1dece.ro" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+    <div class="fb-like" data-href="http://hora.1dece.ro" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
 
     <div class="sidebar-buttons">
       <button class="top ion-ios7-location"></button>
@@ -144,7 +147,7 @@
 
   <div id="footer">
     <div class="footer-wrapper">
-      <span class="hello1dece"><a href="mailto:h1@1dece.ro">h1@1dece.ro</a> + A creative independent campaign made for the National Day of Romania + 2013 + <a href="https://github.com/korin">rubydev</a></span><div class="cc-wrapper"><a class="cc" rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+      <span class="hello1dece"><a href="mailto:hi@1dece.ro">hi@1dece.ro</a> + A creative independent campaign made for the National Day of Romania + 2013 + <a href="https://github.com/korin">rubydev</a></span><div class="cc-wrapper"><a class="cc" rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
       </div>
     </div>
   </div>
