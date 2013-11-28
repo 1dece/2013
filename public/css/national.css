@@ -636,7 +636,7 @@ a.blue:hover   {background: #678e99;}
     border: 1px solid #ececec;
     background-color: #f4f3f1 !important;
     display: block;
-    visibility: visible;
+    visibility: hidden;
     z-index: 9999;
     margin-top: 0;
 }
