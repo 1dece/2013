@@ -3,6 +3,7 @@ var Hora = {
     $('.start-hora').text("Stop hora").append('<i class="ion-stop"></i>').removeClass("start-hora").addClass("pause-hora");
     $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
     $(".hora-container").find(".participant:even").addClass("danceUp");
+    $(".startsong").trigger("click");
 
     // var dance1 = setTimeout(function(){
     //   // $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
@@ -11,10 +12,11 @@ var Hora = {
     //   $(".hora-container").find(".participant:even").addClass("danceUp2");
     // },8000);
 
-    // var dance2 = setTimeout(function(){
-    //   $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').addClass("start-hora").removeClass("pause-hora");
-    //   $(".hora-container").find(".participant").removeClass("danceDown2").removeClass("danceUp2");
-    // },15000);
+    var dance2 = setTimeout(function(){
+      $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').addClass("start-hora").removeClass("pause-hora");
+      $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
+      $(".stopsong").trigger("click");
+    },10500);
   },
 
   bindStartHora: function(){
@@ -108,10 +110,29 @@ var Hora = {
   stopHora: function() {
       $('.red.pause-hora').unbind().bind("click", function(e){
         e.preventDefault();
+        $(".stopsong").trigger("click");
         $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
         $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp").removeClass("danceDown2").removeClass("danceUp2");
         Hora.bindStartHora();
       });
+  },
+
+  soundStart: function() {
+    var source = "../public/audio/hora.mp3",
+        audio = document.createElement("audio");
+    audio.setAttribute("class", "audiohora");
+    audio.src = source;
+    audio.volume = 0.1;
+
+    $(".startsong").click(function(){
+      audio.play();
+    });
+
+    $(".stopsong").click(function(){
+      audio.pause();
+      audio.currentTime = 0;
+    });
+  
   }
 }
 
@@ -122,11 +143,11 @@ $(function(){
   Hora.topSidebar();
   Hora.bindStartHora();
   Hora.stopHora();
+  Hora.soundStart();
 });
 
 
 $(window).ready(function(){
-
   var w = $(window).width();
   $(".hora-container-mask").css("width", w);
 
@@ -136,20 +157,6 @@ $(window).ready(function(){
 
   $(function() {
     var pane = $('.hora-container-mask');
-
-    // pane.bind('jsp-scroll-x',function(event, scrollPositionX) {
-    //   var elLeft = (parseInt($(".hora-container").css("width")) - parseInt($(".hora-container-mask").css("width")));
-
-    //   if (elLeft == scrollPositionX) {
-    //     $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
-    //     $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceDown");
-    //   }
-
-    // }).jScrollPane({
-    //   animateScroll: true,
-    //   animateDuration: 3000,
-    //   animateEase: "linear"
-    // });
     pane.jScrollPane();
     var api = pane.data('jsp');
 

@@ -23,6 +23,7 @@ body {position:relative;}
 button:focus {
     outline: none;
 }
+*:focus {outline: none;}
 
 h1,h2 {
     font-family: 'Open Sans', sans-serif;
@@ -30,17 +31,20 @@ h1,h2 {
     text-align: center;
     margin: 0;
     text-transform: uppercase;
+    display: inline-block;
+    vertical-align: top;
 }
 
 h1 {
     font-size: 24px;
     color: #ed6e6e;
-    margin: 0;
+    margin: 0 0 0 6px;
 }
 
 h2 {
-    font-size: 14px;
+    font-size: 24px;
     color: #678e99;
+    margin: 0 6px 0 0;
 }
 
 h3 {
@@ -50,7 +54,10 @@ h3 {
     color: #678e99;
     font-style: normal;
     text-align: center;
+    margin: 0;
 }
+
+button { display: none; }
 
 #main {
     transition: all 1s;
@@ -59,6 +66,12 @@ h3 {
     -ms-transition: all 1s;
     -webkit-transition: all 1s;
     -o-transition: all 1s;
+}
+
+.header {
+    text-align: center;
+    color: #e1c65c;
+    line-height: 24px;
 }
 
 /***************** */
@@ -91,7 +104,7 @@ a.blue:hover   {background: #678e99;}
 /**************** */
 
 #top-part {
-    height: 410px;
+    height: 392px;
     background: #FFFFFF;
     display: block;
     position: relative;
@@ -99,7 +112,7 @@ a.blue:hover   {background: #678e99;}
 }
 
 #flagholder {
-    margin: 0 0 16px 0;
+    margin: 0 0 30px 0;
 }
 
 #flagholder div {
@@ -137,7 +150,7 @@ a.blue:hover   {background: #678e99;}
 
 .action-buttons {
     position: absolute;
-    bottom: 40px;
+    bottom: 30px;
     left: 0;
     right: 0;
     display: block;
@@ -202,7 +215,7 @@ a.blue:hover   {background: #678e99;}
 
 .sidebar-buttons {
     position: absolute;
-    top: 373px;
+    top: 356px;
     left:0;
 }
 
@@ -475,7 +488,7 @@ a.blue:hover   {background: #678e99;}
 .hora-container-mask {
     /* width: 600px; */
     margin: 0;
-    height: 216px;
+    height: 190px;
     overflow-y: hidden;
     overflow-x: scroll;
     margin-top: 34px;
@@ -517,7 +530,7 @@ a.blue:hover   {background: #678e99;}
 .dance-description {
     width: 630px;
     display: block;
-    margin: 0 auto;
+    margin: 30px auto 0;
     text-align: center;
 }
 
@@ -553,6 +566,7 @@ a.blue:hover   {background: #678e99;}
     height: 115px;
     width: 54px;
     overflow: hidden;
+    margin-top: 26px;
 
     transition: all 500ms;
     /*browser specific versions*/
@@ -572,6 +586,7 @@ a.blue:hover   {background: #678e99;}
 
     color: #FFFFFF;
     font-family: 'Open Sans', serif;
+    font-weight: 700;
     font-size: 11px;
     text-transform: uppercase;
     text-align: center;
@@ -620,7 +635,9 @@ a.blue:hover   {background: #678e99;}
     border: 1px solid #ececec;
     background-color: #f4f3f1 !important;
     display: block;
-    visibility: hidden;
+    visibility: visible;
+    z-index: 9999;
+    margin-top: 0;
 }
 
 /* editor */
@@ -675,7 +692,7 @@ a.blue:hover   {background: #678e99;}
     height: 25px;
     width: 100%;
     display: block;
-    margin: 36px 0 0 0;
+    margin: 30px 0 0 0;
 }
 
 .footer-wrapper {
