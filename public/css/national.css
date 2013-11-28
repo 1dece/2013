@@ -173,12 +173,19 @@ a.blue:hover   {background: #678e99;}
 }
 
 .pause-hora i,
-.join-hora i,
+.join-hora i, 
 .start-hora i {
     font-size: 36px;
     position: absolute;
     left: 27px;
     top: 10px;
+}
+
+.joined-hora i {
+    font-size: 26px;
+    position: absolute;
+    left: 24px;
+    top: 14px;
 }
 
 .button-spacer {
@@ -223,16 +230,17 @@ a.blue:hover   {background: #678e99;}
 /******************** */
 
 #left-sidebar {
-    position: absolute;
+    position: fixed;
     width: 280px;
     height: 100%;
     background: #c1b3b8;
     display: block;
     padding: 0 40px;
+    z-index: 100;
 }
 
 #left-sidebar h3 {
-    margin: 90px 0 16px 0;
+    margin: 90px 0 16px 25px;
     color: #f6f6f6;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
@@ -367,11 +375,12 @@ a.blue:hover   {background: #678e99;}
 /******************* */
 
 #top-sidebar {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 280px;
     background: #a2c5cf;
     display: block;
+    z-index: 100;
 }
 
 #top-sidebar h3 {
@@ -504,7 +513,7 @@ a.blue:hover   {background: #678e99;}
 }
 
 .dance-description {
-    width: 580px;
+    width: 630px;
     display: block;
     margin: 0 auto;
     text-align: center;
@@ -579,11 +588,11 @@ a.blue:hover   {background: #678e99;}
     top: -16px;
 }
 
-.male { background: url("../img/spritehora.png") 20px -145px no-repeat transparent; }
+.male { background: url("../img/spritehora.png") 20px -160px no-repeat transparent; }
 
-.editor.male[data-character="1"] { background-position: 20px -145px; }
-.editor.male[data-character="2"] { background-position: -84px -145px; }
-.editor.male[data-character="3"] { background-position: -184px -145px; }
+.editor.male[data-character="1"] { background-position: 20px -160px; }
+.editor.male[data-character="2"] { background-position: -84px -160px }
+.editor.male[data-character="3"] { background-position: -184px -160px; }
 
 .current-participant.male[data-character="1"] { background-position: 0 -185px; }
 .current-participant.male[data-character="2"] { background-position: -103px -185px; }
@@ -591,9 +600,9 @@ a.blue:hover   {background: #678e99;}
 
 .female { background: url("../img/spritehora.png") 20px 45px no-repeat transparent; }
 
-.editor.female[data-character="1"] { background-position: 20px 45px; }
-.editor.female[data-character="2"] { background-position: -84px 45px; }
-.editor.female[data-character="3"] { background-position: -184px 45px; }
+.editor.female[data-character="1"] { background-position: 20px 30px; }
+.editor.female[data-character="2"] { background-position: -84px 30px; }
+.editor.female[data-character="3"] { background-position: -184px 30px; }
 
 .current-participant.female[data-character="1"] { background-position: 0 8px; }
 .current-participant.female[data-character="2"] { background-position: -103px 8px; }
@@ -605,9 +614,9 @@ a.blue:hover   {background: #678e99;}
 
 .editor {
     position: relative;
-    padding: 40px 20px;
+    padding: 26px 20px;
     border: 1px solid #ececec;
-    background-color: #f8f8f8 !important;
+    background-color: #f4f3f1 !important;
     display: block;
     visibility: hidden;
 }
@@ -620,9 +629,9 @@ a.blue:hover   {background: #678e99;}
 .gender-select {
     color: #FFFFFF;
     display: inline-block;
-    height: 20px;
-    width: 24px;
-    padding: 4px 0 0 0;
+    height: 15px;
+    width: 47px;
+    padding: 2px 0 4px 0;
     text-decoration: none;
     text-align: center;
 }
@@ -636,7 +645,7 @@ a.blue:hover   {background: #678e99;}
 .save-participant {
     font-family: 'Open Sans', serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 12px;
     text-transform: uppercase;
     text-decoration: none;
     color: #FFF;
@@ -646,7 +655,8 @@ a.blue:hover   {background: #678e99;}
     width: 100%;
     left: 0;
     text-align: center;
-    padding: 4px 0;
+    padding: 2px 0;
+    background: #1db344 !important;
 }
 
 .arrows {
@@ -1223,5 +1233,31 @@ a.blue:hover   {background: #678e99;}
     background: #1db344;
     position: relative;
     display: inline-block;
-    padding: 18px 46px;
+    padding: 18px 30px 18px 62px;
+    margin-right: 5px;
+}
+
+.participant:nth-child(even):hover p {
+    background: #e1c65c;
+}
+
+.participant:nth-child(odd):hover p {
+    background: #ed6e6e;
+}
+
+.participant:nth-child(4):hover p,
+.participant:nth-child(7):hover p,
+.participant:nth-child(10):hover p,
+.participant:nth-child(13):hover p {
+    background: #a2c5cf !important; 
+}
+
+.fb-like {
+    position: absolute !important;
+    bottom: 0;
+    margin: 0 auto;
+    display: block !important;
+    left: 0;
+    right: 0;
+    text-align: center;
 }

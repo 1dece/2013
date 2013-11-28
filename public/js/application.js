@@ -44,7 +44,9 @@ var App = {
           }else{
             hora.find('.participant:nth-child('+place_after+'n):first').after(new_editor);
           }
-          new_editor.css({visibility: 'visible'})
+          new_editor.css({visibility: 'visible'});
+
+          $(".jspHorizontalBar").css("visibility", "hidden");
 
           Hora.selGender();
           Hora.selCharacter();
@@ -66,6 +68,8 @@ var App = {
       $(this).fadeOut(200);
       $(this).prevAll(".arrows, .gender-buttons").fadeOut(200);
       $(this).parent().removeClass("editor").addClass("current-participant").addClass("newParticipant");
+
+      $(".jspHorizontalBar").css("visibility", "visible");
 
 
       App.saveCharacter(App.current_user, function(){
@@ -165,7 +169,7 @@ var App = {
 
   showDanceButton: function(){
     var $this = this;
-    $('#status').empty().append('<a href="#" class="joined-hora">You are in!</a><span class="button-spacer yellow">or</span><a id="dance" href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>');
+    $('#status').empty().append('<a href="#" class="joined-hora"><i class="ion-checkmark"></i>You are in!</a><span class="button-spacer yellow">or</span><a id="dance" href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>');
 
     Hora.bindStartHora();
     $('#dance').unbind().bind('click', function(e){

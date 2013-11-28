@@ -1,26 +1,27 @@
 var Hora = {
   startHora: function(){
-    $('.start-hora').text("Pause hora").append('<i class="ion-ios7-pause"></i>').removeClass("start-hora").addClass("pause-hora");
+    $('.start-hora').text("Stop hora").append('<i class="ion-stop"></i>').removeClass("start-hora").addClass("pause-hora");
     $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
     $(".hora-container").find(".participant:even").addClass("danceUp");
 
-    setTimeout(function(){
-      // $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
-      $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
-      $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown2");
-      $(".hora-container").find(".participant:even").addClass("danceUp2");
-    },8000);
+    // var dance1 = setTimeout(function(){
+    //   // $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
+    //   $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
+    //   $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown2");
+    //   $(".hora-container").find(".participant:even").addClass("danceUp2");
+    // },8000);
 
-    setTimeout(function(){
-      $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
-      $(".hora-container").find(".participant").removeClass("danceDown2").removeClass("danceUp2");
-    },15000);
+    // var dance2 = setTimeout(function(){
+    //   $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').addClass("start-hora").removeClass("pause-hora");
+    //   $(".hora-container").find(".participant").removeClass("danceDown2").removeClass("danceUp2");
+    // },15000);
   },
 
   bindStartHora: function(){
-    $('.start-hora').click(function(e){
+    $('.red.start-hora').off().on("click", function(e){
       e.preventDefault();
       Hora.startHora();
+      Hora.stopHora();
     });
   },
 
@@ -74,6 +75,10 @@ var Hora = {
   leftSidebar: function(){
     $(".left, .close-leftSidebar").unbind().bind("click", function(){
       $('a, button').bind("click", function() { return false; });
+        if ($(".slideTop").length) { 
+          $("#main").removeClass("slideTop");
+          $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
+        }
       if (!$(".slideLeft").length) {
         $("#main").addClass("slideLeft");
         $("#left-sidebar").removeClass("initialLeftSidebar").addClass("moveLeftSidebar");
@@ -86,6 +91,10 @@ var Hora = {
 
   topSidebar: function(){
     $(".top, .close-topSidebar").unbind().bind("click", function(){
+      if ($(".slideLeft").length) {
+        $("#main").removeClass("slideLeft");
+        $("#left-sidebar").removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
+      }
       if (!$(".slideTop").length) {
         $("#main").addClass("slideTop");
         $("#top-sidebar").removeClass("initialTopSidebar").addClass("moveTopSidebar");
@@ -94,6 +103,15 @@ var Hora = {
         $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
       }
     });
+  },
+
+  stopHora: function() {
+      $('.red.pause-hora').unbind().bind("click", function(e){
+        e.preventDefault();
+        $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
+        $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp").removeClass("danceDown2").removeClass("danceUp2");
+        Hora.bindStartHora();
+      });
   }
 }
 
@@ -103,6 +121,7 @@ $(function(){
   Hora.leftSidebar();
   Hora.topSidebar();
   Hora.bindStartHora();
+  Hora.stopHora();
 });
 
 
@@ -118,38 +137,21 @@ $(window).ready(function(){
   $(function() {
     var pane = $('.hora-container-mask');
 
-    pane.bind('jsp-scroll-x',function(event, scrollPositionX) {
-      var elLeft = (parseInt($(".hora-container").css("width")) - parseInt($(".hora-container-mask").css("width")));
+    // pane.bind('jsp-scroll-x',function(event, scrollPositionX) {
+    //   var elLeft = (parseInt($(".hora-container").css("width")) - parseInt($(".hora-container-mask").css("width")));
 
-      if (elLeft == scrollPositionX) {
-        $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
-        $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceDown");
-      }
+    //   if (elLeft == scrollPositionX) {
+    //     $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
+    //     $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceDown");
+    //   }
 
-    }).jScrollPane({
-      animateScroll: true,
-      animateDuration: 3000,
-      animateEase: "linear"
-    });
-
+    // }).jScrollPane({
+    //   animateScroll: true,
+    //   animateDuration: 3000,
+    //   animateEase: "linear"
+    // });
+    pane.jScrollPane();
     var api = pane.data('jsp');
-
-    // $('.start-hora').click(function(e){
-    //   e.preventDefault();
-    //   //api.scrollToX(0, false);
-    //   $('.start-hora').text("Pause hora").append('<i class="ion-ios7-pause"></i>').removeClass("start-hora").addClass("pause-hora");
-    //   //api.scrollToX(parseInt(containerW), true);
-    //   $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
-    // });
-
-    // $('.pause-hora').click(function(e){
-    //   e.preventDefault();
-    //   alert(e.target.nodeName );
-    //   $('.jspPane, .jspDrag').stop();
-    //   $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
-    //   api.scrollToX(0, false);
-    // });
-
 
   });
 });
