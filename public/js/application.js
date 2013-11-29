@@ -170,6 +170,7 @@ var App = {
   showLoginButton: function(){
     var $this = this;
     $('#status').empty().append('<a id="connect" href="#" class="join-hora blue"><i class="ion-social-facebook"></i>Join Hora</a><span class="button-spacer yellow">or</span><a id="dance" href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>');
+
     Hora.bindStartHora();
     $('#connect').unbind().bind('click', function(e){
       e.preventDefault();
@@ -182,23 +183,7 @@ var App = {
     $('#status').empty().append('<a href="#" class="joined-hora"><i class="ion-checkmark"></i>You are in!</a><span class="button-spacer yellow">or</span><a id="dance" href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>');
 
     Hora.bindStartHora();
-    $('#dance').unbind().bind('click', function(e){
-      e.preventDefault();
-      Hora.startHora();
-      return false;
-    })
-  },
-
-  // editor: {
-  //   bindGenderButtons: function(){
-  //     $('.gender-buttons a').on('click', function(e){
-  //       e.preventDefault();
-  //       $('.gender-buttons a').removeClass('active');
-  //       $(this).addClass('active');
-  //     });
-  //   }
-  // }
-
+  }
 };
 $(function(){
   $('#connect').unbind().bind('click', function(e){

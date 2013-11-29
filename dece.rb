@@ -9,6 +9,11 @@ require './models/user'
 
 require './helpers'
 
+configure do
+  mime_type :mp3, 'audio/mpeg'
+  mime_type :ogg, 'audio/ogg'
+end
+
 get '/' do
   user_stats
   erb :index
