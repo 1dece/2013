@@ -120,7 +120,7 @@ var Hora = {
   },
 
   soundStart: function() {
-    var source = "http://"+window.location.host+"/audio/hora.mp3",
+    var source = "../public/audio/hora.mp3",
         audio = document.createElement("audio");
     audio.setAttribute("class", "audiohora");
     audio.src = source;
