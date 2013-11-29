@@ -122,7 +122,7 @@ var Hora = {
         audio = document.createElement("audio");
     audio.setAttribute("class", "audiohora");
     audio.src = source;
-    audio.volume = 0.1;
+    audio.volume = 0.3;
 
     $(".startsong").click(function(){
       audio.play();
