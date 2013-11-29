@@ -147,6 +147,16 @@ var App = {
     FB.login(function(response) {
       if (response.authResponse) {
           // App.saveUserData();
+        FB.api(
+          'me/firstdece_ro:dance',
+          'post',
+          {
+            hora: window.location.href
+          },
+          function(response) {
+            // handle the response
+          }
+        );
       } else {
         // User cancelled login or did not fully authorize.
       }
