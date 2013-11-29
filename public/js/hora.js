@@ -1,4 +1,6 @@
 var Hora = {
+  dance2: null,
+
   startHora: function(){
     $('.start-hora').text("Stop hora").append('<i class="ion-stop"></i>').removeClass("start-hora").addClass("pause-hora");
     $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
@@ -12,7 +14,7 @@ var Hora = {
     //   $(".hora-container").find(".participant:even").addClass("danceUp2");
     // },8000);
 
-    var dance2 = setTimeout(function(){
+    Hora.dance2 = setTimeout(function(){
       $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').addClass("start-hora").removeClass("pause-hora");
       $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
       $(".stopsong").trigger("click");
