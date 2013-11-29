@@ -1,21 +1,14 @@
 var Hora = {
+  dance2: null,
+
   startHora: function(){
     $('.start-hora').text("Stop hora").append('<i class="ion-stop"></i>').removeClass("start-hora").addClass("pause-hora");
     $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
     $(".hora-container").find(".participant:even").addClass("danceUp");
     $(".startsong").trigger("click");
 
-    // var dance1 = setTimeout(function(){
-    //   // $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
-    //   $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
-    //   $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown2");
-    //   $(".hora-container").find(".participant:even").addClass("danceUp2");
-    // },8000);
-
-    var dance2 = setTimeout(function(){
-      $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').addClass("start-hora").removeClass("pause-hora");
-      $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
-      $(".stopsong").trigger("click");
+    Hora.dance2 = setTimeout(function(){
+      $('.pause-hora').click();
     },10500);
   },
 
@@ -110,6 +103,7 @@ var Hora = {
   stopHora: function() {
       $('.red.pause-hora').unbind().bind("click", function(e){
         e.preventDefault();
+        clearTimeout(Hora.dance2);
         $(".stopsong").trigger("click");
         $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
         $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp").removeClass("danceDown2").removeClass("danceUp2");
