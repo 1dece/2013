@@ -151,7 +151,7 @@ var App = {
           'me/firstdece_ro:dance',
           'post',
           {
-            hora: window.location.href
+            hora: "http://"+window.location.host
           },
           function(response) {
             // handle the response
