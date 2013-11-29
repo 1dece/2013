@@ -115,12 +115,13 @@ var Hora = {
         $(".stopsong").trigger("click");
         $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
         $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp").removeClass("danceDown2").removeClass("danceUp2");
+        clearTimeout(Hora.dance2);
         Hora.bindStartHora();
       });
   },
 
   soundStart: function() {
-    var source = "../public/audio/hora.mp3",
+    var source = "http://"+window.location.host+"/audio/hora.mp3",
         audio = document.createElement("audio");
     audio.setAttribute("class", "audiohora");
     audio.src = source;
@@ -138,7 +139,7 @@ var Hora = {
   }
 }
 
-$(function(){
+$(function() {  
   Hora.selGender();
   Hora.selCharacter();
   Hora.leftSidebar();
