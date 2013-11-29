@@ -13,3 +13,5 @@ bundle exec rake db:migrate
 reset db
 ------------------
 bundle exec rake db:migrate:reset
+
+deploy
