@@ -77,7 +77,7 @@ var Hora = {
   leftSidebar: function(){
     $(".left, .close-leftSidebar").unbind().bind("click", function(){
       $('a, button').bind("click", function() { return false; });
-        if ($(".slideTop").length) { 
+        if ($(".slideTop").length) {
           $("#main").removeClass("slideTop");
           $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
         }
@@ -118,7 +118,7 @@ var Hora = {
   },
 
   soundStart: function() {
-    var source = "../public/audio/hora.mp3",
+    var source = "http://"+window.location.host+"/audio/hora.mp3",
         audio = document.createElement("audio");
     audio.setAttribute("class", "audiohora");
     audio.src = source;
@@ -132,7 +132,7 @@ var Hora = {
       audio.pause();
       audio.currentTime = 0;
     });
-  
+
   }
 }
 
