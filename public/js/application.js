@@ -31,8 +31,12 @@ var App = {
       var user = App.current_user;
       if(user){
         var hora = $('.hora-container'),
-        editor = $('.editor'),
-        place_after = Math.floor($(window).width() / 2 / editor.width());
+            editor = $('.editor'),
+            pane = $('.hora-container-mask');
+
+        pane.jScrollPane();
+        var api = pane.data('jsp'),
+            place_after = Math.floor((api.getContentPositionX() + $(window).width() / 2) / editor.width());
 
 
         $('.user-'+response.authResponse.userID).remove();
