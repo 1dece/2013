@@ -24,7 +24,7 @@ button:focus {
     outline: none;
 }
 *:focus {outline: none;}
-
+a { font-weight: 700; }
 h1,h2 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
@@ -86,11 +86,17 @@ button { display: none; }
 .joined-hora.blue { padding-right:  45px; }
 
 .active-gender.red,
-a.red:hover    {background: #b74848;}
+.left:hover,
+a.red:hover    {
+    background: #b74848;
+}
 
 .action-buttons .blue:hover,
 .active-gender.blue,
-a.blue:hover   {background: #678e99 !important;}
+.top:hover,
+a.blue:hover   {
+    background: #678e99 !important;
+}
 
 .link {
     color: #ed6e6e;
@@ -243,7 +249,7 @@ a.blue:hover   {background: #678e99 !important;}
     width: 38px;
     border: 1px solid #e5e5e5;
     margin-bottom: -1px;
-}
+} 
 
 /********************** */
 /*** 3. Left Sidebar ***/
