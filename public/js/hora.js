@@ -37,6 +37,9 @@ var Hora = {
       editor.find(".save-participant").fadeOut(200);
       editor.find(".arrows, .gender-buttons").fadeOut(200);
       editor.removeClass("editor").addClass("current-participant").addClass("newParticipant").addClass("hidden-editor");
+      setTimeout(function(){
+        editor.removeClass("newParticipant");
+      },800);
     }
   },
 
