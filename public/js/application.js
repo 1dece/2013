@@ -67,7 +67,7 @@ var App = {
 
       $(this).fadeOut(200);
       $(this).prevAll(".arrows, .gender-buttons").fadeOut(200);
-      $(this).parent().removeClass("editor").addClass("current-participant").addClass("newParticipant");
+      $(this).parent().removeClass("editor").addClass("current-participant").addClass("newParticipant").addClass("hidden-editor");
 
       $(".jspHorizontalBar").css("visibility", "visible");
 
