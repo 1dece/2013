@@ -81,12 +81,16 @@ button { display: none; }
 .red    {background: #ed6e6e;}
 .yellow {background: #e1c65c;}
 .blue   {background: #a2c5cf;}
+.action-buttons .blue   {background: #a2c5cf !important;}
+
+.joined-hora.blue { padding-right:  45px; }
 
 .active-gender.red,
 a.red:hover    {background: #b74848;}
 
+.action-buttons .blue:hover,
 .active-gender.blue,
-a.blue:hover   {background: #678e99;}
+a.blue:hover   {background: #678e99 !important;}
 
 .link {
     color: #ed6e6e;
@@ -221,10 +225,11 @@ a.blue:hover   {background: #678e99;}
 
 .sidebar-buttons button {
     font-size: 25px;
+    color: #FFFFFF;
 }
 
 .left {
-    background: #FFFFFF;
+    background: #ed6e6e;
     display: block;
     height: 38px;
     width: 38px;
@@ -232,7 +237,7 @@ a.blue:hover   {background: #678e99;}
 }
 
 .top {
-    background: #FFFFFF;
+    background: #a2c5cf;
     display: block !important;
     height: 38px !important;
     width: 38px;
@@ -693,11 +698,11 @@ a.blue:hover   {background: #678e99;}
     height: 25px;
     width: 100%;
     display: block;
-    margin: 35px 0 0 0;
+    margin: 35px 0 20px 0;
 }
 
 .footer-wrapper {
-    width: 610px;
+    width: 720px;
     display: block;
     margin: 0 auto;
 }
@@ -717,7 +722,7 @@ a.blue:hover   {background: #678e99;}
 
 .cc-wrapper {
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 2px;
 }
 
 .danceDown {
@@ -1484,11 +1489,22 @@ a.blue:hover   {background: #678e99;}
 }
 
 .fb-like {
-    position: absolute !important;
     bottom: 0;
     margin: 0 auto;
     display: block !important;
-    left: 0;
-    right: 0;
     text-align: center;
 }
+
+.marker {
+    overflow: visible;
+}
+
+.ion-chevron-down {
+    top: -24px;
+    position: absolute;
+    z-index: 9999;
+    left: 22px;
+}
+
+
+

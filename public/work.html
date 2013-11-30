@@ -40,6 +40,34 @@
 
 <body>
 
+  <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        // init the FB JS SDK
+        FB.init({
+          appId      : '1408586556045283',                        // App ID from the app dashboard
+          channelUrl : '//1dece-hora.rubygun.pl/channel.html', // Channel file for x-domain comms
+          status     : true,                                 // Check Facebook Login status
+          xfbml      : true                                  // Look for social plugins on the page
+        });
+
+        // Additional initialization code such as adding Event Listeners goes here
+        FB.Event.subscribe('auth.statusChange', function(response) {
+          App.handleSession(response);
+        });
+
+      };
+
+      // Load the SDK asynchronously
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
   <div id="left-sidebar" class="initialLeftSidebar">
     <button class="ion-close close-leftSidebar"></button>
     <h3>Statistics</h3>
@@ -96,7 +124,7 @@
             <a href="#" class="save-participant blue">Join</a>
         </div>
         
-         <div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
+         <div class="current-participant participant male" data-character="1"><i class="ion-chevron-down"></i><p>Bogdan Ferariu</p></div><!--
       --><div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
       --><div class="current-participant participant female" data-character="3"><p>Bogdan Ferariu</p></div><!--
       --><div class="current-participant participant male" data-character="1"><p>Bogdan Ferariu</p></div><!--
@@ -138,8 +166,6 @@
 
     </div><!-- action buttons -->
 
-    <div class="fb-like" data-href="http://1dece.ro" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
-
     <div class="sidebar-buttons">
       <button class="top ion-ios7-location"></button>
       <button class="left ion-ios7-pie"></button>
@@ -158,8 +184,10 @@
 
   <div id="footer">
     <div class="footer-wrapper">
-      <span class="hello1dece"><a href="mailto:hi@1dece.ro">hi@1dece.ro</a> + A creative independent campaign made for the National Day of Romania + 2013 + <a href="https://github.com/korin">rubydev</a></span><div class="cc-wrapper"><a class="cc" rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
-      </div>
+      <div class="fb-like" data-href="http://1dece.ro" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+      <span class="hello1dece">
+        <a href="mailto:hi@1dece.ro">hi@1dece.ro</a> + A creative independent campaign made for the National Day of Romania + 2013 + <a href="https://github.com/korin">rubydev</a> + 
+        <div class="cc-wrapper"><a class="cc" rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a></div></span>
     </div>
   </div>
 

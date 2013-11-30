@@ -34,7 +34,7 @@ var App = {
 
           new_editor.find('.active-gender').removeClass('active-gender');
           new_editor.find('.gender-buttons').find('.ion-'+user.gender).addClass('active-gender');
-          new_editor.removeClass('male').removeClass('female').addClass(user.gender);
+          new_editor.removeClass('male').removeClass('female').addClass(user.gender).removeClass("marker");
           new_editor.attr('data-character', character);
 
           hora.attr('style', 'width:'+hora.find('.participant').length * 54 + 300 + 'px');
@@ -67,7 +67,7 @@ var App = {
 
       $(this).fadeOut(200);
       $(this).prevAll(".arrows, .gender-buttons").fadeOut(200);
-      $(this).parent().removeClass("editor").addClass("current-participant").addClass("newParticipant").addClass("hidden-editor");
+      $(this).parent().removeClass("editor").addClass("current-participant").addClass("newParticipant");// .addClass("hidden-editor") should remove addClass hidden
 
       $(".jspHorizontalBar").css("visibility", "visible");
 
@@ -75,6 +75,7 @@ var App = {
       App.saveCharacter(App.current_user, function(){
         setTimeout(function(){
           $(".participant").removeClass("newParticipant");
+          parent.addClass("marker");
         },800);
       });
 
@@ -181,7 +182,9 @@ var App = {
   showDanceButton: function(){
     var $this = this;
     $('#status').empty().append('<a href="#" class="joined-hora"><i class="ion-checkmark"></i>You are in!</a><span class="button-spacer yellow">or</span><a id="dance" href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>');
-
+    setTimeout(function(){
+      $(".joined-hora").addClass("blue").text("Joined").append('<i class="ion-checkmark"></i>');
+    },400);
     Hora.bindStartHora();
   }
 };

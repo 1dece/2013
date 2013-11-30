@@ -2,12 +2,12 @@ var Hora = {
   dance2: null,
 
   startHora: function(){
-    Hora.hideEditor();
     $('.start-hora').text("Stop hora").append('<i class="ion-stop"></i>').removeClass("start-hora").addClass("pause-hora");
     $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
     $(".hora-container").find(".participant:even").addClass("danceUp");
     $(".startsong").trigger("click");
 
+<<<<<<< HEAD
     // var dance1 = setTimeout(function(){
     //   // $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
     //   $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
@@ -19,7 +19,10 @@ var Hora = {
       $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').addClass("start-hora").removeClass("pause-hora");
       $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
       $(".stopsong").trigger("click");
-      Hora.showEditor();
+=======
+    Hora.dance2 = setTimeout(function(){
+      $('.pause-hora').click();
+>>>>>>> 45301966a21a48bc2ab119d537b04375354bbdac
     },10500);
   },
 
@@ -29,36 +32,6 @@ var Hora = {
       Hora.startHora();
       Hora.stopHora();
     });
-  },
-
-  hideEditor: function(){
-    var editor = $('.hora-container .editor');
-    if(editor.length){
-      editor.find(".save-participant").fadeOut(200);
-      editor.find(".arrows, .gender-buttons").fadeOut(200);
-      editor.removeClass("editor").addClass("current-participant").addClass("newParticipant").addClass("hidden-editor");
-      setTimeout(function(){
-        editor.removeClass("newParticipant");
-      },800);
-    }
-  },
-
-  showEditor: function(){
-    var editor = $('.hora-container .hidden-editor');
-
-    if(editor.length){
-      editor.addClass("editor").removeClass("current-participant").removeClass("newParticipant");
-      editor.find(".save-participant").fadeIn(200);
-      editor.find(".arrows, .gender-buttons").fadeIn(200);
-    }
-  },
-
-  joinedHover: function(){
-      $(".joined-hora.blue").on("mouseenter", function(){
-        $(this).find("i").removeClass("ion-checkmark").addClass("ion-ios7-personadd");
-      }).on("mouseleave", function(){
-        $(this).find("i").removeClass("ion-ios7-personadd").addClass("ion-checkmark");
-      });
   },
 
   selGender: function() {
@@ -144,11 +117,11 @@ var Hora = {
   stopHora: function() {
       $('.red.pause-hora').unbind().bind("click", function(e){
         e.preventDefault();
+        clearTimeout(Hora.dance2);
         $(".stopsong").trigger("click");
         $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
         $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp").removeClass("danceDown2").removeClass("danceUp2");
         clearTimeout(Hora.dance2);
-        Hora.showEditor();
         Hora.bindStartHora();
       });
   },
@@ -172,7 +145,7 @@ var Hora = {
   }
 }
 
-$(function() {
+$(function() {  
   Hora.selGender();
   Hora.selCharacter();
   Hora.leftSidebar();
@@ -180,7 +153,6 @@ $(function() {
   Hora.bindStartHora();
   Hora.stopHora();
   Hora.soundStart();
-  Hora.joinedHover();
 });
 
 
