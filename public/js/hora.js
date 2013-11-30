@@ -19,6 +19,7 @@ var Hora = {
       $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').addClass("start-hora").removeClass("pause-hora");
       $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
       $(".stopsong").trigger("click");
+      App.showEditor();
     },10500);
   },
 
