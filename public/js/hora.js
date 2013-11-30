@@ -1,26 +1,26 @@
 var Hora = {
   dance2: null,
+  dance1: null,
 
   startHora: function(){
     Hora.hideEditor();
     $('.start-hora').text("Stop hora").append('<i class="ion-stop"></i>').removeClass("start-hora").addClass("pause-hora");
-    $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
-    $(".hora-container").find(".participant:even").addClass("danceUp");
+    $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceOne");
+    $(".hora-container").find(".participant:even").addClass("danceTwo");
     $(".startsong").trigger("click");
 
-    // var dance1 = setTimeout(function(){
-    //   // $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("stop-hora").addClass("start-hora");
-    //   $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
-    //   $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown2");
-    //   $(".hora-container").find(".participant:even").addClass("danceUp2");
-    // },8000);
+    Hora.dance1 = setTimeout(function(){
+      $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceOne").addClass("danceThree");
+      $(".hora-container").find(".participant:even").removeClass("danceTwo").addClass("danceFour");
+    },7500);
 
     Hora.dance2 = setTimeout(function(){
       $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').addClass("start-hora").removeClass("pause-hora");
-      $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
+      $(".hora-container").find(".participant").removeClass("danceFour").removeClass("danceThree");
       $(".stopsong").trigger("click");
       Hora.showEditor();
-    },10500);
+      Hora.bindStartHora();
+    },20500);
   },
 
   bindStartHora: function(){
@@ -152,7 +152,7 @@ var Hora = {
         e.preventDefault();
         $(".stopsong").trigger("click");
         $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
-        $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp").removeClass("danceDown2").removeClass("danceUp2");
+        $(".hora-container").find(".participant").removeClass("danceOne").removeClass("danceTwo").removeClass("danceThree").removeClass("danceFour");
         clearTimeout(Hora.dance2);
         Hora.showEditor();
         Hora.bindStartHora();
@@ -160,7 +160,7 @@ var Hora = {
   },
 
   soundStart: function() {
-    var source = "http://"+window.location.host+"/audio/hora.mp3",
+    var source = "http://"+window.location.host+"/audio/horamare.mp3",
         audio = document.createElement("audio");
     audio.setAttribute("class", "audiohora");
     audio.src = source;
