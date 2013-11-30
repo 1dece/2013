@@ -19,7 +19,7 @@ var Hora = {
       $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').addClass("start-hora").removeClass("pause-hora");
       $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp");
       $(".stopsong").trigger("click");
-      App.showEditor();
+      Hora.showEditor();
     },10500);
   },
 
@@ -36,7 +36,17 @@ var Hora = {
     if(editor.length){
       editor.find(".save-participant").fadeOut(200);
       editor.find(".arrows, .gender-buttons").fadeOut(200);
-      editor.removeClass("editor").addClass("current-participant").addClass("newParticipant");
+      editor.removeClass("editor").addClass("current-participant").addClass("newParticipant").addClass("hidden-editor");
+    }
+  },
+
+  showEditor: function(){
+    var editor = $('.hora-container .hidden-editor');
+
+    if(editor.length){
+      editor.addClass("editor").removeClass("current-participant").removeClass("newParticipant");
+      editor.find(".save-participant").fadeIn(200);
+      editor.find(".arrows, .gender-buttons").fadeIn(200);
     }
   },
 
@@ -127,6 +137,7 @@ var Hora = {
         $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
         $(".hora-container").find(".participant").removeClass("danceDown").removeClass("danceUp").removeClass("danceDown2").removeClass("danceUp2");
         clearTimeout(Hora.dance2);
+        Hora.showEditor();
         Hora.bindStartHora();
       });
   },
