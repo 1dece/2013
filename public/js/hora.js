@@ -31,6 +31,7 @@ var Hora = {
   },
 
   hideEditor: function(){
+    var editor = $('.hora-container .editor');
     if(editor.length){
       editor.find(".save-participant").fadeOut(200);
       editor.find(".arrows, .gender-buttons").fadeOut(200);
