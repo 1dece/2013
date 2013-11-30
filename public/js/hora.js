@@ -54,8 +54,14 @@ var Hora = {
   },
 
   joinedHover: function(){
-      $(".joined-hora.blue").on("mouseenter", function(){
+      $(".joined-hora.blue").off().on("mouseenter", function(){
         $(this).find("i").removeClass("ion-checkmark").addClass("ion-ios7-personadd");
+
+        $(this).click(function(e){
+          e.preventDefault();
+          App.showEditor();
+        });
+
       }).on("mouseleave", function(){
         $(this).find("i").removeClass("ion-ios7-personadd").addClass("ion-checkmark");
       });

@@ -698,7 +698,7 @@ a.blue:hover   {background: #678e99 !important;}
     height: 25px;
     width: 100%;
     display: block;
-    margin: 35px 0 20px 0;
+    margin: 35px 0 0 0;
 }
 
 .footer-wrapper {
@@ -1489,7 +1489,6 @@ a.blue:hover   {background: #678e99 !important;}
 }
 
 .fb-like {
-    bottom: 0;
     margin: 0 auto;
     display: block !important;
     text-align: center;
@@ -1503,8 +1502,32 @@ a.blue:hover   {background: #678e99 !important;}
     top: -24px;
     position: absolute;
     z-index: 9999;
-    left: 22px;
+    left: 18px;
+    opacity: 0;
+    color: #e1c65c;
+
+    transition: all 500ms ease-in;
+    /*browser specific versions*/
+    -moz-transition: all 500ms ease-in;
+    -ms-transition: all 500ms ease-in;
+    -webkit-transition: all 500ms ease-in;
+    -o-transition: all 500ms ease-in;
 }
 
+.marker .ion-chevron-down {
+    opacity: 1;
+}
 
+@media all and (min-device-width : 320px) and (max-device-width : 720px) {
+
+    .dance-description {
+        width: 80% !important;
+    }
+
+    .footer-wrapper {
+        width: 80% !important;
+        text-align: center;
+    }
+
+}
 

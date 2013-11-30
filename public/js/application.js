@@ -74,6 +74,12 @@ var App = {
 
       App.saveCharacter(App.current_user, function(){
         setTimeout(function(){
+          $(".joined-hora").addClass("blue").text("Joined").append('<i class="ion-checkmark"></i>');
+        },400);
+
+        Hora.joinedHover();
+
+        setTimeout(function(){
           $(".participant").removeClass("newParticipant");
           parent.addClass("marker");
         },800);
@@ -182,9 +188,6 @@ var App = {
   showDanceButton: function(){
     var $this = this;
     $('#status').empty().append('<a href="#" class="joined-hora"><i class="ion-checkmark"></i>You are in!</a><span class="button-spacer yellow">or</span><a id="dance" href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>');
-    setTimeout(function(){
-      $(".joined-hora").addClass("blue").text("Joined").append('<i class="ion-checkmark"></i>');
-    },400);
     Hora.bindStartHora();
   }
 };
