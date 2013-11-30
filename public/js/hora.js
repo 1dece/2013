@@ -2,6 +2,7 @@ var Hora = {
   dance2: null,
 
   startHora: function(){
+    Hora.hideEditor();
     $('.start-hora').text("Stop hora").append('<i class="ion-stop"></i>').removeClass("start-hora").addClass("pause-hora");
     $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceDown");
     $(".hora-container").find(".participant:even").addClass("danceUp");
@@ -27,6 +28,14 @@ var Hora = {
       Hora.startHora();
       Hora.stopHora();
     });
+  },
+
+  hideEditor: function(){
+    if(editor.length){
+      editor.find(".save-participant").fadeOut(200);
+      editor.find(".arrows, .gender-buttons").fadeOut(200);
+      editor.removeClass("editor").addClass("current-participant").addClass("newParticipant");
+    }
   },
 
   selGender: function() {
