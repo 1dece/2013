@@ -1,4 +1,9 @@
 var App = {
+  handleLoginStatus: function(){
+    FB.getLoginStatus(function(response) {
+      App.handleSession(response);
+    });
+  },
 
   handleSession: function(session){
     if (session.status === 'connected') {
@@ -17,41 +22,75 @@ var App = {
     }
   },
 
-  showEditor: function(){
+  showEditor: function(response){
+    if($('.hora-container .editor').length){
+      return;
+    }
+
+    var internalShow = function(response){
+      var user = App.current_user;
+      if(user){
+        var hora = $('.hora-container'),
+        editor = $('.editor'),
+        place_after = Math.floor($(window).width() / 2 / editor.width());
+
+
+        $('.user-'+response.authResponse.userID).remove();
+
+        // calculate editor position
+        var new_editor = editor.clone(),
+        character = user && user.character ? user.character : 1;
+
+        new_editor.find('.active-gender').removeClass('active-gender');
+        new_editor.find('.gender-buttons').find('.ion-'+user.gender).addClass('active-gender');
+        new_editor.removeClass('male').removeClass('female').addClass(user.gender).removeClass("marker");
+        new_editor.addClass('user-'+response.authResponse.userID);
+        new_editor.attr('data-character', character);
+
+        hora.attr('style', 'width:'+hora.find('.participant').length * 54 + 300 + 'px');
+
+        if (hora.find('.participant').length <= place_after){
+          hora.append(new_editor);
+        }else{
+          hora.find('.participant:nth-child('+place_after+'n):first').after(new_editor);
+        }
+        new_editor.css({visibility: 'visible'});
+
+        $(".jspHorizontalBar").css("visibility", "hidden");
+
+        Hora.selGender();
+        Hora.selCharacter();
+        App.applyCharacter();
+      }
+    }
+
+  if(response){
+    if (response.status === 'connected') {
+      internalShow(response);
+    }
+  }else{
+    FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        internalShow(response);
+      }
+    });
+  }
+},
+
+  tryShowEditor: function(){
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
           // remove current user from list
           var user = App.current_user;
           if(user){
-          var hora = $('.hora-container'),
-              editor = $('.editor'),
-              place_after = Math.floor($(window).width() / 2 / editor.width());
-
-          $('.user-'+response.authResponse.userID).slideUp().remove();
-          // calculate editor position
-          var new_editor = editor.clone(),
-              character = user && user.character ? user.character : 1;
-
-          new_editor.find('.active-gender').removeClass('active-gender');
-          new_editor.find('.gender-buttons').find('.ion-'+user.gender).addClass('active-gender');
-          new_editor.removeClass('male').removeClass('female').addClass(user.gender).removeClass("marker");
-          new_editor.attr('data-character', character);
-
-          hora.attr('style', 'width:'+hora.find('.participant').length * 54 + 300 + 'px');
-
-          if (hora.find('.participant').length <= place_after){
-            hora.append(new_editor);
-          }else{
-            hora.find('.participant:nth-child('+place_after+'n):first').after(new_editor);
-          }
-          new_editor.css({visibility: 'visible'});
-
-          $(".jspHorizontalBar").css("visibility", "hidden");
-
-          Hora.selGender();
-          Hora.selCharacter();
-          App.applyCharacter();
-
+            var user_participant = $('.user-'+response.authResponse.userID)
+            if(user.character){ // already joined show marker
+              user_participant.addClass("marker");
+              $(".joined-hora").addClass("blue").text("Joined").append('<i class="ion-checkmark"></i>');
+              Hora.joinedHover();
+            }else{ // show editor
+              App.showEditor(response);
+            }
         }
       }
     });
@@ -67,7 +106,7 @@ var App = {
 
       $(this).fadeOut(200);
       $(this).prevAll(".arrows, .gender-buttons").fadeOut(200);
-      $(this).parent().removeClass("editor").addClass("current-participant").addClass("newParticipant");// .addClass("hidden-editor") should remove addClass hidden
+      $(this).parent().removeClass("editor").addClass("current-participant").addClass("newParticipant").addClass("marker");// .addClass("hidden-editor") should remove addClass hidden
 
       $(".jspHorizontalBar").css("visibility", "visible");
 
@@ -75,9 +114,8 @@ var App = {
       App.saveCharacter(App.current_user, function(){
         setTimeout(function(){
           $(".joined-hora").addClass("blue").text("Joined").append('<i class="ion-checkmark"></i>');
+          Hora.joinedHover();
         },400);
-
-        Hora.joinedHover();
 
         setTimeout(function(){
           $(".participant").removeClass("newParticipant");
@@ -125,7 +163,7 @@ var App = {
       },
       success: function(user){
         App.current_user = user;
-        App.showEditor();
+        App.tryShowEditor();
       },
     })
   },
@@ -153,7 +191,11 @@ var App = {
   login: function(){
     FB.login(function(response) {
       if (response.authResponse) {
-          // App.saveUserData();
+        App.uid           = response.authResponse.userID;
+        App.accessToken   = response.authResponse.accessToken;
+        App.signedRequest = response.authResponse.signedRequest;
+        App.showDanceButton();
+        App.saveUserData();
         FB.api(
           'me/firstdece_ro:dance',
           'post',
@@ -191,9 +233,4 @@ var App = {
     Hora.bindStartHora();
   }
 };
-$(function(){
-  $('#connect').unbind().bind('click', function(e){
-    e.preventDefault();
-    App.login();
-  })
-});
+
