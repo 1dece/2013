@@ -32,6 +32,9 @@ post '/save' do
   allow_new = true
   user = current_user(allow_new)
   reject! unless user
-  user.update_attributes(params["user"]) if user.new_record?
+  if user.new_record?
+    params["user"]["character"] = 1
+    user.update_attributes(params["user"])
+  end
   user.to_json
 end

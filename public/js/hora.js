@@ -161,7 +161,7 @@ var Hora = {
   }
 }
 
-$(function() {  
+$(function() {
   Hora.selGender();
   Hora.selCharacter();
   Hora.leftSidebar();
