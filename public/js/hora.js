@@ -4,19 +4,22 @@ var Hora = {
 
   startHora: function(){
     Hora.hideEditor();
+
+    var horaContainer = $(".hora-container");
+
     $('.start-hora').text("Stop hora").append('<i class="ion-stop"></i>').removeClass("start-hora").addClass("pause-hora");
-    $(".hora-container").find(".participant:nth-of-type(2n)").addClass("danceOne");
-    $(".hora-container").find(".participant:even").addClass("danceTwo");
+    horaContainer.find(".participant:nth-of-type(2n)").addClass("danceOne");
+    horaContainer.find(".participant:even").addClass("danceTwo");
     $(".startsong").trigger("click");
 
     Hora.dance1 = setTimeout(function(){
-      $(".hora-container").find(".participant:nth-of-type(2n)").removeClass("danceOne").addClass("danceThree");
-      $(".hora-container").find(".participant:even").removeClass("danceTwo").addClass("danceFour");
+      horaContainer.find(".participant:nth-of-type(2n)").removeClass("danceOne").addClass("danceThree");
+      horaContainer.find(".participant:even").removeClass("danceTwo").addClass("danceFour");
     },7500);
 
     Hora.dance2 = setTimeout(function(){
       $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').addClass("start-hora").removeClass("pause-hora");
-      $(".hora-container").find(".participant").removeClass("danceFour").removeClass("danceThree");
+      horaContainer.find(".participant").removeClass("danceFour").removeClass("danceThree");
       $(".stopsong").trigger("click");
       Hora.showEditor();
       Hora.bindStartHora();
@@ -115,34 +118,40 @@ var Hora = {
   },
 
   leftSidebar: function(){
+    var leftSidebar = $("#left-sidebar"),
+        idMain = $("#main");
+
     $(".left, .close-leftSidebar").unbind().bind("click", function(){
       $('a, button').bind("click", function() { return false; });
         if ($(".slideTop").length) {
-          $("#main").removeClass("slideTop");
+          idMain.removeClass("slideTop");
           $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
         }
       if (!$(".slideLeft").length) {
-        $("#main").addClass("slideLeft");
-        $("#left-sidebar").removeClass("initialLeftSidebar").addClass("moveLeftSidebar");
+        idMain.addClass("slideLeft");
+        leftSidebar.removeClass("initialLeftSidebar").addClass("moveLeftSidebar");
       } else {
-        $("#main").removeClass("slideLeft");
-        $("#left-sidebar").removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
+        idMain.removeClass("slideLeft");
+        leftSidebar.removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
       }
     });
   },
 
   topSidebar: function(){
+    var topSidebar = $("#top-sidebar"),
+        idMain = $("#main");
+
     $(".top, .close-topSidebar").unbind().bind("click", function(){
       if ($(".slideLeft").length) {
-        $("#main").removeClass("slideLeft");
+        idMain.removeClass("slideLeft");
         $("#left-sidebar").removeClass("moveLeftSidebar").addClass("initialLeftSidebar");
       }
       if (!$(".slideTop").length) {
-        $("#main").addClass("slideTop");
-        $("#top-sidebar").removeClass("initialTopSidebar").addClass("moveTopSidebar");
+        idMain.addClass("slideTop");
+        topSidebar.removeClass("initialTopSidebar").addClass("moveTopSidebar");
       } else {
-        $("#main").removeClass("slideTop");
-        $("#top-sidebar").removeClass("moveTopSidebar").addClass("initialTopSidebar");
+        idMain.removeClass("slideTop");
+        topSidebar.removeClass("moveTopSidebar").addClass("initialTopSidebar");
       }
     });
   },
@@ -154,6 +163,7 @@ var Hora = {
         $('.pause-hora').text("Start hora").append('<i class="ion-ios7-musical-note"></i>').removeClass("pause-hora").addClass("start-hora");
         $(".hora-container").find(".participant").removeClass("danceOne").removeClass("danceTwo").removeClass("danceThree").removeClass("danceFour");
         clearTimeout(Hora.dance2);
+        clearTimeout(Hora.dance1);
         Hora.showEditor();
         Hora.bindStartHora();
       });
