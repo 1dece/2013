@@ -210,8 +210,14 @@ $(window).ready(function(){
 
   $(function() {
     var pane = $('.hora-container-mask');
-    pane.jScrollPane();
+    pane.jScrollPane({
+        showArrows: true,
+        animateScroll: true
+    });
     var api = pane.data('jsp');
+
+    $(".jspArrowLeft").addClass("ion-chevron-left");
+    $(".jspArrowRight").addClass("ion-chevron-right");
 
   });
 });
