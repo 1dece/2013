@@ -126,7 +126,7 @@
 
     <div class="hora-container-mask">
       <div class="hora-container" style="width: <%= User.count * 54  %>px">
-          <% User.all.each do |user| %>
+          <% User.order('id DESC').to_a.each do |user| %>
             <div class="user-<%= user.fbid %> current-participant participant <%= user.gender %>" data-character="<%= user.character || [1,2,3].shuffle.first %>"><i class="ion-chevron-down"></i><p><%= user.name %></p></div>
           <% end %>
       </div>
