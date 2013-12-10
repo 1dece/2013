@@ -26,6 +26,7 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,400' rel='stylesheet' type='text/css'>
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="js/hora.js"></script>  
+  <script type="text/javascript" src="js/winter.js"></script>  
   <script type="text/javascript" src="js/jquery.mousewheel.js"></script>  
   <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
 
@@ -109,11 +110,17 @@
         <div class="red"></div>
     </div><!-- flagholder -->
 
+    <div id="winter_lights">
+      <div class="light_left"></div>
+      <div class="light_center"></div>
+      <div class="light_right"></div>
+    </div>
+
     <div class="header">
-      <h2>1 december</h2> | <h1>National Day of Romania</h1>
+      <!-- <h2>1 december</h2> | <h1>National Day of Romania</h1> -->
 
       <div class="cl-effect-20" id="cl-effect-20">
-        <a href="#cl-effect-20"><span data-hover="December | Month of Fah-lah-lah">1 december | National Day of Romania</span></a>
+        <a href="#cl-effect-20"><span data-hover="1 december | National Day of Romania"><span class="h2">December | Ho-ho-ho and La-la-la</span></a>
       </div>  
 
     </div>
@@ -167,6 +174,7 @@
       <a href="#" class="join-hora blue"><i class="ion-social-facebook"></i>Join Hora</a>
       <span class="button-spacer yellow">or</span>
       <a href="#" class="start-hora red"><i class="ion-ios7-musical-note"></i>Start Hora</a>
+      <a href="#" class="change-theme green" id="goWinter"><i class="ion-ios7-snowy"></i></a>
 
       <button class="startsong"></button>
       <button class="stopsong"></button>

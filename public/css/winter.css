@@ -12,19 +12,28 @@
 
 /* Effect 20: 3D side */
 .cl-effect-20 a {
-    line-height: 2em;
+    font-weight: 300;
     -webkit-perspective: 800px;
     -moz-perspective: 800px;
     perspective: 800px;
-    color: #FFFFFF;
+    color: #e1c65c;
+}
+
+.cl-effect-20 a span i {
+    font-size: 18px;
+    font-style: normal;
+    line-height: 42px;
+    margin: 0;
 }
 
 .cl-effect-20 a span {
+    width: 520px;
+    font-size: 20px;
+    color: #FFFFFF;
+    z-index: 10;
     position: relative;
     display: inline-block;
-    padding: 3px 15px 0;
-    background: #587285;
-    box-shadow: inset 0 3px #2f4351;
+    padding: 6px 10px 0;
     -webkit-transition: background 0.6s;
     -moz-transition: background 0.6s;
     transition: background 0.6s;
@@ -46,11 +55,11 @@
     width: 100%;
     height: 100%;
     background: #fff;
-    color: #2f4351;
+
     content: attr(data-hover);
-    -webkit-transform: rotateX(270deg);
-    -moz-transform: rotateX(270deg);
-    transform: rotateX(270deg);
+    -webkit-transform: rotateX(8deg);
+    -moz-transform: rotateX(8deg);
+    transform: rotateX(8deg);
     -webkit-transition: -webkit-transform 0.6s;
     -moz-transition: -moz-transform 0.6s;
     transition: transform 0.6s;
@@ -58,18 +67,133 @@
     -moz-transform-origin: 0 0;
     transform-origin: 0 0;
     pointer-events: none;
+
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    margin: 0;
+    text-transform: uppercase;
+    display: inline-block;
+    vertical-align: top;
+    color: #ed6e6e;
 }
 
 .cl-effect-20 a:hover span,
 .cl-effect-20 a:focus span {
-    background: #2f4351;
+    /*background: #2f4351;*/
 }
 
 .cl-effect-20 a:hover span::before,
+.cl-effect-20 a.hover span::before,
 .cl-effect-20 a:focus span::before {
-    -webkit-transform: rotateX(10deg);  
-    -moz-transform: rotateX(10deg);
-    transform: rotateX(10deg);
+    -webkit-transform: rotateX(270deg); 
+    -moz-transform: rotateX(270deg);
+    transform: rotateX(270deg);
 }
 
 
+/* christmas buttons */
+
+.green {
+    background: #719C65 !important;
+}
+
+.green:hover {
+    background: #135300 !important;
+}
+
+.winter_buttons {
+    background: #135300 !important;
+
+    -webkit-transition: background 0.6s ease-in 0.4s;
+    -moz-transition: background 0.6s ease-in 0.4s;
+    transition: background 0.6s ease-in 0.4s;
+}
+
+.xmas-background {
+    background: #da3637 !important;
+
+    -webkit-transition: background 0.8s ease-in 1.2s;
+    -moz-transition: background 0.8s ease-in 1.2s;
+    transition: background 0.8s ease-in 1.2s;
+}
+
+#winter_lights {
+
+}
+
+.light_left {
+    display: none;
+    opacity: 1;
+    width: 365px;
+    height: 200px;
+    position: absolute;
+    top: 15px;
+    left: 0;
+
+    background: url(../img/light_left.png) 0 0 no-repeat transparent;
+}
+
+.light_center {
+    display: none;
+    opacity: 1;
+    width: 202px;
+    height: 200px;
+    margin: 0 auto;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    background: url(../img/light_center.png) 0 0 no-repeat transparent;
+}
+
+.light_right {
+    display: none;
+    opacity: 1;
+    width: 365px;
+    height: 200px;
+    position: absolute;
+    top: 15px;
+    right: 0;
+
+    background: url(../img/light_right.png) 0 0 no-repeat transparent;
+}
+
+.shadow-flagholder {
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
+}
+
+.change-theme {
+    position: relative;
+    display: inline-block;
+    padding: 18px 27px 37px 28px;
+    vertical-align: bottom;
+    margin-left: 5px;
+}
+
+.change-theme i {
+    font-size: 36px;
+    position: absolute;
+    left: 19px;
+    top: 10px;
+    
+}
+
+#goWinter.changeToHora {
+    background: #135300 !important;
+    position: relative;
+    display: inline-block;
+    padding: 18px 27px 37px 28px;
+    vertical-align: bottom;
+    margin-left: 5px;
+}
+
+.changeToHora i {
+    font-size: 24px;
+    position: absolute;
+    left: 15px;
+    top: 16px;
+}

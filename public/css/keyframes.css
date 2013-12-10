@@ -8,6 +8,7 @@
  * 2. Dance one
  * 3. Dance three
  * 4. Dance four
+ * 5. Snowflake
  * =========================================================== */
 
 @charset "utf-8";
@@ -848,4 +849,65 @@
         -webkit-transform:translateY(0);
         -o-transform:translateY(0);
     }
+}
+
+/********************** */
+/*** 5. Snowflake    ***/
+/******************** */
+
+.change-theme i {
+
+    -moz-animation: snowflake 6s infinite linear;
+    -webkit-animation: snowflake 6s infinite linear;
+
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+}
+
+@-moz-keyframes snowflake {
+    from { -moz-transform: rotate3d(0, 0, 1, 0deg); }
+    to { -moz-transform: rotate3d(0, 0, 1, 360deg); }
+}
+@-webkit-keyframes snowflake {
+    from { -webkit-transform: rotate3d(0, 0, 1, 0deg); }
+    to { -webkit-transform: rotate3d(0, 0, 1, 360deg); }
+}
+@keyframes snowflake {
+    from {transform:rotate3d(0, 0, 1, 0deg);}
+    to {transform:rotate3d(0, 0, 1, 360deg);}
+}
+
+/************************ */
+/*** 6. Change clothes ***/
+/********************** */
+
+.winterTransition {
+    -moz-animation: changeClothes 4.2s ease-in;
+    -webkit-animation: changeClothes 4.2s ease-in;
+}
+
+@-moz-keyframes changeClothes {
+    0%   { -moz-transform: translate3d(0, 0, 0); }
+    15%  { -moz-transform: translate3d(0, 160px, 0); }
+    70%  { -moz-transform: translate3d(0, 160px, 0); }
+    100% { -moz-transform: translate3d(0, 0, 0); }
+}
+@-webkit-keyframes changeClothes {
+    0%   { -webkit-transform: translate3d(0, 0, 0); }
+    15%  { -webkit-transform: translate3d(0, 160px, 0); }
+    70%  { -webkit-transform: translate3d(0, 160px, 0); }
+    100% { -webkit-transform: translate3d(0, 0, 0); }
+}
+@keyframes changeClothes {
+    0%   { -ms-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+    15%  { -ms-transform: translate3d(0, 160px, 0); transform: translate3d(0, 160px, 0); }
+    70%  { -ms-transform: translate3d(0, 160px, 0); transform: translate3d(0, 160px, 0); }
+    100% { -ms-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
 }

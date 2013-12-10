@@ -28,7 +28,7 @@ button:focus {
 }
 *:focus {outline: none;}
 a { font-weight: 700; }
-h1,h2 {
+h1,h2,.h1,.h2 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     text-align: center;
@@ -38,13 +38,13 @@ h1,h2 {
     vertical-align: top;
 }
 
-h1 {
+h1, .h1 {
     font-size: 24px;
     color: #ed6e6e;
     margin: 0 0 0 6px;
 }
 
-h2 {
+h2, .h2 {
     font-size: 24px;
     color: #678e99;
     margin: 0 6px 0 0;
@@ -84,7 +84,7 @@ button { display: none; }
 .red    {background: #ed6e6e;}
 .yellow {background: #e1c65c;}
 .blue   {background: #a2c5cf;}
-.action-buttons .blue   {background: #a2c5cf !important;}
+.action-buttons .blue   {background: #a2c5cf;}
 
 .joined-hora.blue { padding-right:  45px; }
 
@@ -135,7 +135,7 @@ a.blue:hover   {
     right: 0;
     display: block;
     margin: 0 auto;
-    width: 405px;
+    width: 505px;
 }
 
 .action-buttons a,
@@ -478,7 +478,7 @@ a.blue:hover   {
 
 .hora-container {
     /* width: 10000px; */
-    height: 100%;
+    height: 150px;
     display: block;
 }
 
